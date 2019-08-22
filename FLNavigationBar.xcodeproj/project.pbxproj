@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLNavigationBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C633586230CEEE7008EA141 /* FLNavigationBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLNavigationBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C633597230CEEEA008EA141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C633598230CEEEA008EA141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C6335BE230CF016008EA141 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		4C633587230CEEE7008EA141 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */,
+				4C633586230CEEE7008EA141 /* FLNavigationBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C633585230CEEE7008EA141 /* FLNavigationBarExample */ = {
+		4C633585230CEEE7008EA141 /* FLNavigationBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBarExample" */;
+			buildConfigurationList = 4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBar" */;
 			buildPhases = (
 				4C633582230CEEE7008EA141 /* Sources */,
 				4C633583230CEEE7008EA141 /* Frameworks */,
@@ -167,9 +167,9 @@
 			);
 			dependencies = (
 			);
-			name = FLNavigationBarExample;
+			name = FLNavigationBar;
 			productName = FLNavigationBar;
-			productReference = 4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */;
+			productReference = 4C633586230CEEE7008EA141 /* FLNavigationBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBarExample" */;
+			buildConfigurationList = 4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBar" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -199,7 +199,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C633585230CEEE7008EA141 /* FLNavigationBarExample */,
+				4C633585230CEEE7008EA141 /* FLNavigationBar */,
 			);
 		};
 /* End PBXProject section */
@@ -410,7 +410,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBarExample" */ = {
+		4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C63359A230CEEEA008EA141 /* Debug */,
@@ -419,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBarExample" */ = {
+		4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C63359D230CEEEA008EA141 /* Debug */,
