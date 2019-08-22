@@ -11,11 +11,12 @@
 
 
 typedef NS_ENUM(NSInteger, FLBarStyle) {
-    FLBarStyleNone = 0,
-    FLBarStyleDefault = 0xff,         // 毛玻璃效果
+    FLBarStyleNone = 0,               // 公共样式
+    FLBarStyleDefault = 0xff,         // 默认毛玻璃效果
     FLBarStyleColor,                  // 颜色
     FLBarStyleTransparent,            // 透明
     FLBarStyleHidden,                 // 隐藏
+    FLBarStyleTranslucent,            // 毛玻璃效果可以修改样式
 };
 
 typedef NS_ENUM(NSInteger, FLBlurEffectStyle) {

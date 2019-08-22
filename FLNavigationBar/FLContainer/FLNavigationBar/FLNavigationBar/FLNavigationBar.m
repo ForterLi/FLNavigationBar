@@ -22,7 +22,7 @@
 @property (nonatomic, assign) FLBlurEffectStyle barBlurEffectStyle;
 @property (nonatomic, strong) UIColor *barLineColor;
 @property (nonatomic, strong) UIColor *barBackgroundColor;
-@property (nonatomic, weak) UINavigationController *currentNavigationController;
+@property (nonatomic, weak)   UINavigationController *currentNavigationController;
 
 @end
 
@@ -153,7 +153,7 @@
     _barLineColor = _defaultLintColor;
     _barBackgroundColor = _defaultBarColor;
     _barBlurEffectStyle = _defaultBlurEffectStyle;
-    _currentBarBlurEffectStyle = [self transitionBlurEffectStyle:_defaultBlurEffectStyle];
+    _currentBarBlurEffectStyle = [self transitionBlurEffectStyle:_barBlurEffectStyle];
 
     /// customContainerView
     UIView *customContainerView = [[UIView alloc] init];
@@ -257,19 +257,18 @@
     UIColor *lineColor = item.yq_barLineColor;
     FLBlurEffectStyle barEffectStyle = item.yq_barBlurEffectStyle;
     if (barStyle == FLBarStyleNone) {
-        barStyle = _barCustomStyle;
-        barColor = _barBackgroundColor;
-        lineColor = _barLineColor;
-        barEffectStyle = _barBlurEffectStyle;
+        barStyle =  _barCustomStyle;
+        barColor = barColor ?:_barBackgroundColor;
+        lineColor = lineColor ?: _barLineColor;
+        barEffectStyle = barEffectStyle ?: _barBlurEffectStyle;
     }
-    
     [self resetCustomViewStyle];
     switch (barStyle) {
         case FLBarStyleColor:
             _tempBackgroundViewAlpha = 1;
-            _tempBackgroundViewColor = [self transitionColor:barColor];
+            _tempBackgroundViewColor = [self transitionBackgroundColor:barColor];
             _tempLineShadowViewAlpha = 1;
-            _tempLineShadowViewColor = [self transitionColor:lineColor];
+            _tempLineShadowViewColor = [self transitionLineShadowColor:lineColor];
             break;
         case FLBarStyleTransparent:
             break;
@@ -277,12 +276,18 @@
             _tempHidesBackButton = YES;
             _tempBarUserInteractionEnabled = NO;
             break;
+        case FLBarStyleTranslucent:
+            _tempVisualEffectViewAlpha = 1;
+            _tempLineShadowViewAlpha = 1;
+            _tempLineShadowViewColor = [self transitionLineShadowColor:lineColor];
+            _tempBarBlurEffectStyle = [self transitionBlurEffectStyle:barEffectStyle];
+            break;
         case FLBarStyleDefault:
         default:
             _tempVisualEffectViewAlpha = 1;
             _tempLineShadowViewAlpha = 1;
-            _tempLineShadowViewColor = [self defaultTransitionColor:lineColor];
-            _tempBarBlurEffectStyle = [self defaultTransitionBlurEffectStyle:barEffectStyle];
+            _tempLineShadowViewColor = _defaultLintColor;
+            _tempBarBlurEffectStyle = [self transitionBlurEffectStyle:_defaultBlurEffectStyle];
             break;
     }
     _customBackgroundView.backgroundColor = _tempBackgroundViewColor;
@@ -300,18 +305,22 @@
 #pragma mark - Class Private Methods
 #pragma mark - Modules
 #pragma mark transition color
-
-- (UIColor *)transitionColor:(UIColor *)color {
-    if (color == nil || CGColorEqualToColor(color.CGColor, _clearColor.CGColor)) {
-        return _whiteAlphaZero;
+- (UIColor *)transitionBackgroundColor:(UIColor *)color {
+    if (color == nil) {
+        return _barBackgroundColor;
     }
-    return color;
+    return [self transitionColor:color];
 }
 
-- (UIColor *)defaultTransitionColor:(UIColor *)color {
+
+- (UIColor *)transitionLineShadowColor:(UIColor *)color {
     if (color == nil) {
-        return _defaultLintColor;
+        return _barLineColor;
     }
+    return [self transitionColor:color];
+}
+
+- (UIColor *)transitionColor:(UIColor *)color {
     if (CGColorEqualToColor(color.CGColor, _clearColor.CGColor)) {
         return _whiteAlphaZero;
     }
@@ -329,13 +338,6 @@
         default:
             return UIBlurEffectStyleLight;
     }
-}
-
-- (UIBlurEffectStyle)defaultTransitionBlurEffectStyle:(FLBlurEffectStyle)style {
-    if (style == FLBlurEffectStyleNone) {
-        style = _defaultBlurEffectStyle;
-    }
-    return [self transitionBlurEffectStyle:style];
 }
 
 #pragma mark - Setters

@@ -59,7 +59,6 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -177,7 +176,7 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         
         switch indexPath.section {
         case 0:
-            vc.barStyle = .default
+            vc.barStyle = .translucent
             let item = barStyles[indexPath.row]
             vc.barBlurEffectStyle = item.values.first!
             break
@@ -222,6 +221,16 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
     // MARK: - Event Repons
     @IBAction func changeColorAction(_ sender: Any) {
         changeBtn.backgroundColor = FLRandomColor()
+    }
+    
+    @IBAction func changeStyleAction(_ sender: Any) {
+        self.navigationItem.yq_barStyle = .transparent
+        self.yq_barStyleUpdate()
+    }
+    
+    @IBAction func lineColorAction(_ sender: Any) {
+        self.navigationItem.yq_barLineColor = FLRandomColor()
+        self.yq_barStyleUpdate()
     }
     
     // MARK: - Notification

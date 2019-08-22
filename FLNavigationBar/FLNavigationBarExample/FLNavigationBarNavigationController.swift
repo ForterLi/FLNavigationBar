@@ -11,12 +11,6 @@ import UIKit
 class FLNavigationBarNavigationController: FLBaseNavigationController {
     override func loadView() {
         super.loadView()
-        self.navigationBar.backIndicatorImage = UIImage.init(named: "yq_back_black")
-        self.navigationBar.backIndicatorTransitionMaskImage = UIImage.init(named: "yq_back_black")
-        self.barStyle = .transparent
-        self.barBackgroundColor = UIColor.white
-        self.barLineColor = UIColor.white
-        self.barStyleUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {

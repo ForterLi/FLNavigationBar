@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dor-jM-epo">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="paF-w9-7Hu">
@@ -57,24 +57,46 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-SZ-VWI">
                                 <rect key="frame" x="10" y="0.0" width="394" height="88"/>
-                                <state key="normal" title="Change Color"/>
+                                <state key="normal" title="Hidden Style Change Color"/>
                                 <connections>
                                     <action selector="changeColorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voG-Vh-YEx"/>
                                 </connections>
                             </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6en-o0-zEt">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Glj-ny-lsh"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Change Style" id="WWv-v3-Ooe">
+                                        <connections>
+                                            <action selector="changeStyleAction:" destination="BYZ-38-t0r" id="Ub9-pN-VsW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Line Color" id="mT5-nu-D23">
+                                        <connections>
+                                            <action selector="lineColorAction:" destination="BYZ-38-t0r" id="ebD-sp-Mv2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nva-ns-tAH" firstAttribute="top" secondItem="6en-o0-zEt" secondAttribute="bottom" id="04C-QV-Mjb"/>
+                            <constraint firstAttribute="trailing" secondItem="6en-o0-zEt" secondAttribute="trailing" id="Az6-2E-QXa"/>
                             <constraint firstAttribute="trailing" secondItem="dor-jM-epo" secondAttribute="trailing" id="DMk-2f-Q9E"/>
-                            <constraint firstItem="nva-ns-tAH" firstAttribute="top" secondItem="dor-jM-epo" secondAttribute="bottom" id="FKi-fI-v8v"/>
                             <constraint firstItem="ClU-SZ-VWI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="QYA-Ga-zwF"/>
                             <constraint firstItem="dor-jM-epo" firstAttribute="top" secondItem="ClU-SZ-VWI" secondAttribute="bottom" id="T4y-NI-Z0o"/>
+                            <constraint firstItem="6en-o0-zEt" firstAttribute="top" secondItem="dor-jM-epo" secondAttribute="bottom" id="UYX-v0-P9o"/>
                             <constraint firstItem="dor-jM-epo" firstAttribute="top" secondItem="qdl-c1-TqC" secondAttribute="bottom" id="WsR-qf-0na"/>
                             <constraint firstAttribute="trailing" secondItem="ClU-SZ-VWI" secondAttribute="trailing" constant="10" id="jSa-oK-0sM"/>
+                            <constraint firstItem="6en-o0-zEt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nkx-Xy-qZ8"/>
                             <constraint firstItem="ClU-SZ-VWI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xTl-QA-osq"/>
                             <constraint firstItem="dor-jM-epo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yA0-3m-c3u"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="zxZ-8e-Wi8"/>
                     <connections>
                         <outlet property="changeBtn" destination="ClU-SZ-VWI" id="UVA-L3-avu"/>
@@ -83,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-900" y="-98"/>
+            <point key="canvasLocation" x="-900.00000000000011" y="-98.4375"/>
         </scene>
     </scenes>
 </document>
