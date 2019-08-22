@@ -8,28 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		4C633599230CEEEA008EA141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C633598230CEEEA008EA141 /* main.m */; };
-		4C6335B7230CEFEB008EA141 /* FLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335A5230CEFEB008EA141 /* FLBaseNavigationController.m */; };
 		4C6335CC230CF016008EA141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335BF230CF016008EA141 /* Assets.xcassets */; };
 		4C6335CE230CF016008EA141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335C2230CF016008EA141 /* Main.storyboard */; };
 		4C6335D0230CF016008EA141 /* FLNavigationBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C6230CF016008EA141 /* FLNavigationBarNavigationController.swift */; };
 		4C6335D1230CF016008EA141 /* FLNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */; };
 		4C6335D2230CF016008EA141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C8230CF016008EA141 /* AppDelegate.m */; };
-		4C6335E2230CF5D1008EA141 /* FLAloneNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335DA230CF5D1008EA141 /* FLAloneNavigationBar.m */; };
-		4C6335E3230CF5D1008EA141 /* FLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335DD230CF5D1008EA141 /* FLNavigationBar.m */; };
-		4C6335E4230CF5D1008EA141 /* UIViewController+FLBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335DF230CF5D1008EA141 /* UIViewController+FLBar.m */; };
-		4C6335E5230CF5D1008EA141 /* UINavigationItem+FLBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335E0230CF5D1008EA141 /* UINavigationItem+FLBar.m */; };
-		4C6335E9230CF7F5008EA141 /* UIScreen+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335E7230CF7F5008EA141 /* UIScreen+FLAdd.m */; };
-		4C6335ED230CF7FB008EA141 /* UIDevice+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335EB230CF7FB008EA141 /* UIDevice+FLAdd.m */; };
 		4C6335F0230D090B008EA141 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335EF230D090A008EA141 /* timg.jpg */; };
 		4C6335F3230D1ADD008EA141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */; };
+		4C8D5C61230E88A800451F9E /* UIScreen+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */; };
+		4C8D5C62230E88A800451F9E /* UIDevice+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */; };
+		4C8D5C63230E88A800451F9E /* FLAloneNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */; };
+		4C8D5C64230E88A800451F9E /* FLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C5A230E88A800451F9E /* FLBaseNavigationController.m */; };
+		4C8D5C65230E88A800451F9E /* FLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C5C230E88A800451F9E /* FLNavigationBar.m */; };
+		4C8D5C66230E88A800451F9E /* UINavigationItem+FLBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C5E230E88A800451F9E /* UINavigationItem+FLBar.m */; };
+		4C8D5C67230E88A800451F9E /* UIViewController+FLBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C5F230E88A800451F9E /* UIViewController+FLBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C633586230CEEE7008EA141 /* FLNavigationBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLNavigationBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLNavigationBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C633597230CEEEA008EA141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C633598230CEEEA008EA141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4C6335A3230CEFEB008EA141 /* FLBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBaseNavigationController.h; sourceTree = "<group>"; };
-		4C6335A5230CEFEB008EA141 /* FLBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBaseNavigationController.m; sourceTree = "<group>"; };
 		4C6335BE230CF016008EA141 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C6335BF230CF016008EA141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C6335C3230CF016008EA141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,24 +35,26 @@
 		4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLNavigationBarViewController.swift; sourceTree = "<group>"; };
 		4C6335C8230CF016008EA141 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4C6335C9230CF016008EA141 /* FLBaseKit-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLBaseKit-Bridging-Header.h"; sourceTree = "<group>"; };
-		4C6335D6230CF5D1008EA141 /* UINavigationItem+FLBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+FLBar.h"; sourceTree = "<group>"; };
-		4C6335D7230CF5D1008EA141 /* UIViewController+FLBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLBar.h"; sourceTree = "<group>"; };
-		4C6335D9230CF5D1008EA141 /* FLAloneNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAloneNavigationBar.h; sourceTree = "<group>"; };
-		4C6335DA230CF5D1008EA141 /* FLAloneNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAloneNavigationBar.m; sourceTree = "<group>"; };
-		4C6335DB230CF5D1008EA141 /* FLNavigationPopDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationPopDelegate.h; sourceTree = "<group>"; };
-		4C6335DD230CF5D1008EA141 /* FLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNavigationBar.m; sourceTree = "<group>"; };
-		4C6335DE230CF5D1008EA141 /* FLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBar.h; sourceTree = "<group>"; };
-		4C6335DF230CF5D1008EA141 /* UIViewController+FLBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLBar.m"; sourceTree = "<group>"; };
-		4C6335E0230CF5D1008EA141 /* UINavigationItem+FLBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+FLBar.m"; sourceTree = "<group>"; };
-		4C6335E1230CF5D1008EA141 /* FLNavigationBarPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarPrivate.h; sourceTree = "<group>"; };
-		4C6335E7230CF7F5008EA141 /* UIScreen+FLAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+FLAdd.m"; sourceTree = "<group>"; };
-		4C6335E8230CF7F5008EA141 /* UIScreen+FLAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+FLAdd.h"; sourceTree = "<group>"; };
-		4C6335EB230CF7FB008EA141 /* UIDevice+FLAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+FLAdd.m"; sourceTree = "<group>"; };
-		4C6335EC230CF7FB008EA141 /* UIDevice+FLAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+FLAdd.h"; sourceTree = "<group>"; };
-		4C6335EE230D07EB008EA141 /* FLNavigationBarHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarHeader.h; sourceTree = "<group>"; };
 		4C6335EF230D090A008EA141 /* timg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpg; sourceTree = "<group>"; };
-		4C6335F1230D0C6D008EA141 /* FLNavigationBarCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarCommon.h; sourceTree = "<group>"; };
 		4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4C8D5C4D230E88A800451F9E /* FLBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBaseNavigationController.h; sourceTree = "<group>"; };
+		4C8D5C4E230E88A800451F9E /* UINavigationItem+FLBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+FLBar.h"; sourceTree = "<group>"; };
+		4C8D5C4F230E88A800451F9E /* FLNavigationBarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarHeader.h; sourceTree = "<group>"; };
+		4C8D5C51230E88A800451F9E /* FLAloneNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAloneNavigationBar.h; sourceTree = "<group>"; };
+		4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+FLAdd.m"; sourceTree = "<group>"; };
+		4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+FLAdd.m"; sourceTree = "<group>"; };
+		4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAloneNavigationBar.m; sourceTree = "<group>"; };
+		4C8D5C55230E88A800451F9E /* UIDevice+FLAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+FLAdd.h"; sourceTree = "<group>"; };
+		4C8D5C56230E88A800451F9E /* UIScreen+FLAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+FLAdd.h"; sourceTree = "<group>"; };
+		4C8D5C57230E88A800451F9E /* FLNavigationPopDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationPopDelegate.h; sourceTree = "<group>"; };
+		4C8D5C58230E88A800451F9E /* UIViewController+FLBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLBar.h"; sourceTree = "<group>"; };
+		4C8D5C59230E88A800451F9E /* FLNavigationBarPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarPrivate.h; sourceTree = "<group>"; };
+		4C8D5C5A230E88A800451F9E /* FLBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBaseNavigationController.m; sourceTree = "<group>"; };
+		4C8D5C5C230E88A800451F9E /* FLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNavigationBar.m; sourceTree = "<group>"; };
+		4C8D5C5D230E88A800451F9E /* FLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBar.h; sourceTree = "<group>"; };
+		4C8D5C5E230E88A800451F9E /* UINavigationItem+FLBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+FLBar.m"; sourceTree = "<group>"; };
+		4C8D5C5F230E88A800451F9E /* UIViewController+FLBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLBar.m"; sourceTree = "<group>"; };
+		4C8D5C60230E88A800451F9E /* FLNavigationBarCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationBarCommon.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 		4C63357D230CEEE7008EA141 = {
 			isa = PBXGroup;
 			children = (
-				4C633588230CEEE7008EA141 /* FLNavigationBar */,
+				4C633588230CEEE7008EA141 /* FLNavigationBarExample */,
 				4C633587230CEEE7008EA141 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,24 +79,24 @@
 		4C633587230CEEE7008EA141 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C633586230CEEE7008EA141 /* FLNavigationBar.app */,
+				4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C633588230CEEE7008EA141 /* FLNavigationBar */ = {
+		4C633588230CEEE7008EA141 /* FLNavigationBarExample */ = {
 			isa = PBXGroup;
 			children = (
 				4C6335BE230CF016008EA141 /* AppDelegate.h */,
 				4C6335C8230CF016008EA141 /* AppDelegate.m */,
 				4C6335C9230CF016008EA141 /* FLBaseKit-Bridging-Header.h */,
 				4C6335BF230CF016008EA141 /* Assets.xcassets */,
-				4C6335D5230CF5D1008EA141 /* FLNavigationBar */,
+				4C8D5C4C230E88A800451F9E /* FLNavigationBar */,
 				4C6335BC230CF016008EA141 /* FLNavigationBarExample */,
 				4C633597230CEEEA008EA141 /* Info.plist */,
 				4C633598230CEEEA008EA141 /* main.m */,
 			);
-			path = FLNavigationBar;
+			path = FLNavigationBarExample;
 			sourceTree = "<group>";
 		};
 		4C6335BC230CF016008EA141 /* FLNavigationBarExample */ = {
@@ -111,44 +111,43 @@
 			path = FLNavigationBarExample;
 			sourceTree = "<group>";
 		};
-		4C6335D5230CF5D1008EA141 /* FLNavigationBar */ = {
+		4C8D5C4C230E88A800451F9E /* FLNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				4C6335EE230D07EB008EA141 /* FLNavigationBarHeader.h */,
-				4C6335DB230CF5D1008EA141 /* FLNavigationPopDelegate.h */,
-				4C6335A3230CEFEB008EA141 /* FLBaseNavigationController.h */,
-				4C6335A5230CEFEB008EA141 /* FLBaseNavigationController.m */,
-				4C6335D6230CF5D1008EA141 /* UINavigationItem+FLBar.h */,
-				4C6335E0230CF5D1008EA141 /* UINavigationItem+FLBar.m */,
-				4C6335D7230CF5D1008EA141 /* UIViewController+FLBar.h */,
-				4C6335DF230CF5D1008EA141 /* UIViewController+FLBar.m */,
-				4C6335F1230D0C6D008EA141 /* FLNavigationBarCommon.h */,
-				4C6335E1230CF5D1008EA141 /* FLNavigationBarPrivate.h */,
-				4C6335D8230CF5D1008EA141 /* FLAloneNavigationBar */,
-				4C6335DC230CF5D1008EA141 /* FLNavigationBar */,
+				4C8D5C4D230E88A800451F9E /* FLBaseNavigationController.h */,
+				4C8D5C4E230E88A800451F9E /* UINavigationItem+FLBar.h */,
+				4C8D5C4F230E88A800451F9E /* FLNavigationBarHeader.h */,
+				4C8D5C50230E88A800451F9E /* FLAloneNavigationBar */,
+				4C8D5C57230E88A800451F9E /* FLNavigationPopDelegate.h */,
+				4C8D5C58230E88A800451F9E /* UIViewController+FLBar.h */,
+				4C8D5C59230E88A800451F9E /* FLNavigationBarPrivate.h */,
+				4C8D5C5A230E88A800451F9E /* FLBaseNavigationController.m */,
+				4C8D5C5B230E88A800451F9E /* FLNavigationBar */,
+				4C8D5C5E230E88A800451F9E /* UINavigationItem+FLBar.m */,
+				4C8D5C5F230E88A800451F9E /* UIViewController+FLBar.m */,
+				4C8D5C60230E88A800451F9E /* FLNavigationBarCommon.h */,
 			);
-			name = FLNavigationBar;
-			path = FLContainer/FLNavigationBar;
-			sourceTree = "<group>";
+			path = FLNavigationBar;
+			sourceTree = SOURCE_ROOT;
 		};
-		4C6335D8230CF5D1008EA141 /* FLAloneNavigationBar */ = {
+		4C8D5C50230E88A800451F9E /* FLAloneNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				4C6335E8230CF7F5008EA141 /* UIScreen+FLAdd.h */,
-				4C6335E7230CF7F5008EA141 /* UIScreen+FLAdd.m */,
-				4C6335EC230CF7FB008EA141 /* UIDevice+FLAdd.h */,
-				4C6335EB230CF7FB008EA141 /* UIDevice+FLAdd.m */,
-				4C6335D9230CF5D1008EA141 /* FLAloneNavigationBar.h */,
-				4C6335DA230CF5D1008EA141 /* FLAloneNavigationBar.m */,
+				4C8D5C51230E88A800451F9E /* FLAloneNavigationBar.h */,
+				4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */,
+				4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */,
+				4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */,
+				4C8D5C55230E88A800451F9E /* UIDevice+FLAdd.h */,
+				4C8D5C56230E88A800451F9E /* UIScreen+FLAdd.h */,
 			);
 			path = FLAloneNavigationBar;
 			sourceTree = "<group>";
 		};
-		4C6335DC230CF5D1008EA141 /* FLNavigationBar */ = {
+		4C8D5C5B230E88A800451F9E /* FLNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				4C6335DE230CF5D1008EA141 /* FLNavigationBar.h */,
-				4C6335DD230CF5D1008EA141 /* FLNavigationBar.m */,
+				4C8D5C5C230E88A800451F9E /* FLNavigationBar.m */,
+				4C8D5C5D230E88A800451F9E /* FLNavigationBar.h */,
 			);
 			path = FLNavigationBar;
 			sourceTree = "<group>";
@@ -156,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C633585230CEEE7008EA141 /* FLNavigationBar */ = {
+		4C633585230CEEE7008EA141 /* FLNavigationBarExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBar" */;
+			buildConfigurationList = 4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBarExample" */;
 			buildPhases = (
 				4C633582230CEEE7008EA141 /* Sources */,
 				4C633583230CEEE7008EA141 /* Frameworks */,
@@ -168,9 +167,9 @@
 			);
 			dependencies = (
 			);
-			name = FLNavigationBar;
+			name = FLNavigationBarExample;
 			productName = FLNavigationBar;
-			productReference = 4C633586230CEEE7008EA141 /* FLNavigationBar.app */;
+			productReference = 4C633586230CEEE7008EA141 /* FLNavigationBarExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -187,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBar" */;
+			buildConfigurationList = 4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBarExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -200,7 +199,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C633585230CEEE7008EA141 /* FLNavigationBar */,
+				4C633585230CEEE7008EA141 /* FLNavigationBarExample */,
 			);
 		};
 /* End PBXProject section */
@@ -224,16 +223,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8D5C64230E88A800451F9E /* FLBaseNavigationController.m in Sources */,
 				4C633599230CEEEA008EA141 /* main.m in Sources */,
+				4C8D5C65230E88A800451F9E /* FLNavigationBar.m in Sources */,
 				4C6335D0230CF016008EA141 /* FLNavigationBarNavigationController.swift in Sources */,
-				4C6335B7230CEFEB008EA141 /* FLBaseNavigationController.m in Sources */,
-				4C6335E9230CF7F5008EA141 /* UIScreen+FLAdd.m in Sources */,
-				4C6335ED230CF7FB008EA141 /* UIDevice+FLAdd.m in Sources */,
-				4C6335E4230CF5D1008EA141 /* UIViewController+FLBar.m in Sources */,
-				4C6335E3230CF5D1008EA141 /* FLNavigationBar.m in Sources */,
-				4C6335E2230CF5D1008EA141 /* FLAloneNavigationBar.m in Sources */,
-				4C6335E5230CF5D1008EA141 /* UINavigationItem+FLBar.m in Sources */,
+				4C8D5C66230E88A800451F9E /* UINavigationItem+FLBar.m in Sources */,
 				4C6335D1230CF016008EA141 /* FLNavigationBarViewController.swift in Sources */,
+				4C8D5C67230E88A800451F9E /* UIViewController+FLBar.m in Sources */,
+				4C8D5C62230E88A800451F9E /* UIDevice+FLAdd.m in Sources */,
+				4C8D5C63230E88A800451F9E /* FLAloneNavigationBar.m in Sources */,
+				4C8D5C61230E88A800451F9E /* UIScreen+FLAdd.m in Sources */,
 				4C6335D2230CF016008EA141 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,7 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D24A64J5VZ;
-				INFOPLIST_FILE = FLNavigationBar/Info.plist;
+				INFOPLIST_FILE = FLNavigationBarExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,7 +377,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.soyoung.FLNavigationBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FLNavigationBar/FLBaseKit-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FLNavigationBarExample/FLBaseKit-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,7 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D24A64J5VZ;
-				INFOPLIST_FILE = FLNavigationBar/Info.plist;
+				INFOPLIST_FILE = FLNavigationBarExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,7 +397,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.soyoung.FLNavigationBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FLNavigationBar/FLBaseKit-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FLNavigationBarExample/FLBaseKit-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,7 +406,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBar" */ = {
+		4C633581230CEEE7008EA141 /* Build configuration list for PBXProject "FLNavigationBarExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C63359A230CEEEA008EA141 /* Debug */,
@@ -416,7 +415,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBar" */ = {
+		4C63359C230CEEEA008EA141 /* Build configuration list for PBXNativeTarget "FLNavigationBarExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C63359D230CEEEA008EA141 /* Debug */,
