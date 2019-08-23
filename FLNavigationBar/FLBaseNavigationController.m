@@ -27,14 +27,7 @@
     [_baseNavigationBar barStyleUpdate];
 }
 
-
 #pragma mark - Life Cycle
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    [self setupViews];
-    return self;
-}
-
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     self = [super initWithNavigationBarClass:FLNavigationBar.class toolbarClass:nil];
     if (self) {
@@ -44,15 +37,9 @@
     return self;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    [self setupViews];
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setupViews];
     self.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
 #pragma clang diagnostic push
