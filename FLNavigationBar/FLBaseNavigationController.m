@@ -31,7 +31,6 @@
 #pragma mark - Life Cycle
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    [self setupViews];
     return self;
 }
 
@@ -39,20 +38,13 @@
     self = [super initWithNavigationBarClass:FLNavigationBar.class toolbarClass:nil];
     if (self) {
         self.viewControllers = @[rootViewController];
-        [self setupViews];
     }
-    return self;
-}
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    [self setupViews];
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setupViews];
     self.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
 #pragma clang diagnostic push
