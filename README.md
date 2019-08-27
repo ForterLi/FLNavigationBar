@@ -9,7 +9,7 @@
 ## 效果图
 | Feature |Demo||
 |---|---|---|
-|Color -> Color|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000001.gif)|![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566398321230&di=d07d26c83a012b739b31e42b8f208ef1&imgtype=0&src=http%3A%2F%2Fcdn.fds.api.xiaomi.com%2Fb2c-bbs%2Fcn%2Fattachment%2F2539da2623a8bed2cb9c48f4575ad8c3.jpg)|
+|Color -> Color|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000001.gif)||
 |Alone Bar -> Alone Bar|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000002.gif)||
 |Color -> Image Bar|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000003.gif)||
 |Hidden -> BlurEffectStyleLight|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000004.gif)||
@@ -78,6 +78,24 @@ typedef NS_ENUM(NSInteger, FLBlurEffectStyle) {
     // 等价 self.navigationItem
     self.alone_navigationItem
 ```
+Custom NavigationController 
+```swift
+class FLCustomNavigationController : UINavigationController,UINavigationControllerDelegate {
+    override func loadView() {
+        super.loadView()
+        self.delegate = self
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        self.startBar()
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        self.endBar(viewController)
+    }
+}
+```
+
 ## 安装
 
 ### CocoaPods
