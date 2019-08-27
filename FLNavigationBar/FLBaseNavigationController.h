@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FLBaseNavigationController : UINavigationController
 
-- (instancetype)initWithNavigationBarClass:(nullable Class)navigationBarClass toolbarClass:(nullable Class)toolbarClass NS_UNAVAILABLE;
 
 @property (nonatomic, assign) FLBarStyle barStyle;
 @property (nonatomic, strong) UIColor *barLineColor;

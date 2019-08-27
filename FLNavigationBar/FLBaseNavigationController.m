@@ -27,12 +27,17 @@
     [_baseNavigationBar barStyleUpdate];
 }
 
+
 #pragma mark - Life Cycle
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    return self;
+}
+
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     self = [super initWithNavigationBarClass:FLNavigationBar.class toolbarClass:nil];
     if (self) {
         self.viewControllers = @[rootViewController];
-        [self setupViews];
     }
     return self;
 }
