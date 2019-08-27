@@ -13,7 +13,6 @@ import UIKit
 func FLRandomColor() -> UIColor {
     return  UIColor(red: CGFloat(arc4random_uniform(256))/255.0, green: CGFloat(arc4random_uniform(256))/255.0, blue: CGFloat(arc4random_uniform(256))/255.0, alpha: 1)
 }
-var count = 0
 
 class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,FLNavigationPopDelegate {
     // MARK: - Class Public Methods
@@ -62,14 +61,14 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "\(count)"
+        self.navigationItem.title = "bar"
         if self.barStyle == FLBarStyle.hidden {
             self.navigationItem.title = nil
         }
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .done, target: nil, action: nil)
         if isAloneBar {
             addAloneBarNavigationBar()
-            self.alone_navigationItem.title = "\(count)"
+            self.alone_navigationItem.title = "bar"
         }
 
         if image != nil {
@@ -77,9 +76,6 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
              self.alone_navigationItem.hidesBackButton = true;
              self.alone_barNavigationBar.setBackgroundImage(image, for: .default)
         }
-        
-      
-        count += 1
         
         // 默认样式
         barStyles = [

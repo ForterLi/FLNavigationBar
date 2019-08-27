@@ -42,9 +42,15 @@
     return self;
 }
 
+
+- (void)loadView
+{
+    [super loadView];
+    [self setupViews];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupViews];
     self.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
 #pragma clang diagnostic push
@@ -63,7 +69,7 @@
 #pragma mark - Delegate
 #pragma mark UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [viewController.transitionCoordinator animateAlongsideTransitionInView:self->_baseNavigationBar animation:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         [self->_baseNavigationBar updateNavigation:context];
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         [self->_baseNavigationBar endNavigation:self.topViewController];

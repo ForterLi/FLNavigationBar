@@ -9,6 +9,32 @@
 #import "UIViewController+FLBar.h"
 #import "FLNavigationBarPrivate.h"
 
+
+@implementation UINavigationController (FLBar)
+
+- (void)startBar {
+    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
+        return;
+    }
+    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
+    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [bar updateNavigation:context];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [bar endNavigation:self.topViewController];
+    }];
+}
+
+- (void)endBar:(UIViewController *)viewController {
+    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
+        return;
+    }
+    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
+    [bar endNavigation:viewController];
+}
+
+@end
+
+
 @implementation UIViewController (FLBar)
 
 - (void)yq_barStyleUpdate {

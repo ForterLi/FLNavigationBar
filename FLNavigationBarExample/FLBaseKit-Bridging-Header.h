@@ -10,6 +10,8 @@
 #define FLBaseKit_Bridging_Header_h
 
 #import "FLNavigationBarHeader.h"
+#import "FLNavigationBar.h"
+
 
 
 #endif /* FLBaseKit_Bridging_Header_h */

@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-@class FLAloneNavigationBar;
 
 NS_ASSUME_NONNULL_BEGIN
+
+@interface UINavigationController (FLBar)
+
+- (void)startBar;
+
+- (void)endBar:(UIViewController *)viewController;
+
+@end
+
+
+
 
 @interface UIViewController (FLBar)
 

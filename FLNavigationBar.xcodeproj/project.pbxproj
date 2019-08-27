@@ -10,7 +10,7 @@
 		4C633599230CEEEA008EA141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C633598230CEEEA008EA141 /* main.m */; };
 		4C6335CC230CF016008EA141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335BF230CF016008EA141 /* Assets.xcassets */; };
 		4C6335CE230CF016008EA141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335C2230CF016008EA141 /* Main.storyboard */; };
-		4C6335D0230CF016008EA141 /* FLNavigationBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C6230CF016008EA141 /* FLNavigationBarNavigationController.swift */; };
+		4C6335D0230CF016008EA141 /* FLCustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C6230CF016008EA141 /* FLCustomNavigationController.swift */; };
 		4C6335D1230CF016008EA141 /* FLNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */; };
 		4C6335D2230CF016008EA141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C8230CF016008EA141 /* AppDelegate.m */; };
 		4C6335F0230D090B008EA141 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335EF230D090A008EA141 /* timg.jpg */; };
@@ -31,7 +31,7 @@
 		4C6335BE230CF016008EA141 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C6335BF230CF016008EA141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C6335C3230CF016008EA141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4C6335C6230CF016008EA141 /* FLNavigationBarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLNavigationBarNavigationController.swift; sourceTree = "<group>"; };
+		4C6335C6230CF016008EA141 /* FLCustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLCustomNavigationController.swift; sourceTree = "<group>"; };
 		4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLNavigationBarViewController.swift; sourceTree = "<group>"; };
 		4C6335C8230CF016008EA141 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4C6335C9230CF016008EA141 /* FLBaseKit-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLBaseKit-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				4C6335EF230D090A008EA141 /* timg.jpg */,
 				4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */,
 				4C6335C2230CF016008EA141 /* Main.storyboard */,
-				4C6335C6230CF016008EA141 /* FLNavigationBarNavigationController.swift */,
+				4C6335C6230CF016008EA141 /* FLCustomNavigationController.swift */,
 				4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */,
 			);
 			path = FLNavigationBarExample;
@@ -146,8 +146,8 @@
 		4C8D5C5B230E88A800451F9E /* FLNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				4C8D5C5C230E88A800451F9E /* FLNavigationBar.m */,
 				4C8D5C5D230E88A800451F9E /* FLNavigationBar.h */,
+				4C8D5C5C230E88A800451F9E /* FLNavigationBar.m */,
 			);
 			path = FLNavigationBar;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 				4C8D5C64230E88A800451F9E /* FLBaseNavigationController.m in Sources */,
 				4C633599230CEEEA008EA141 /* main.m in Sources */,
 				4C8D5C65230E88A800451F9E /* FLNavigationBar.m in Sources */,
-				4C6335D0230CF016008EA141 /* FLNavigationBarNavigationController.swift in Sources */,
+				4C6335D0230CF016008EA141 /* FLCustomNavigationController.swift in Sources */,
 				4C8D5C66230E88A800451F9E /* UINavigationItem+FLBar.m in Sources */,
 				4C6335D1230CF016008EA141 /* FLNavigationBarViewController.swift in Sources */,
 				4C8D5C67230E88A800451F9E /* UIViewController+FLBar.m in Sources */,
