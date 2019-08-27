@@ -1,7 +1,7 @@
 # FLNavigationBar
 <p align="center">
 <a href="https://github.com/ForterLi/FLNavigationBar"><img src="https://img.shields.io/badge/platform-iOS%208.0%2B-ff69b5152950834.svg"></a>
-<a href="https://github.com/ForterLi/FLNavigationBar"><img src="https://img.shields.io/cocoapods/v/FLNavigationBar.svg?style=flat"></a>
+<a href="https://github.com/ForterLi/FLNavigationBar"><img src="https://img.shields.io/cocoapods/v/FLNavigationBar.svg"></a>
 <a href="https://github.com/ForterLi/FLNavigationBar/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat"></a>
 </p>
 一个用来统一管理导航栏转场以及当 push 或者 pop 的时候使动画效果更加顺滑的通用库，并且同时支持竖屏和横屏。能应对复杂的场景变化，又兼顾原生NavigationBar的使用习惯
@@ -9,7 +9,7 @@
 ## 效果图
 | Feature |Demo||
 |---|---|---|
-|Color -> Color|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000001.gif)||
+|Color -> Color|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000001.gif)|![](http://imgqn.koudaitong.com/upload_files/2015/05/19/143203733929082129.jpg)|
 |Alone Bar -> Alone Bar|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000002.gif)||
 |Color -> Image Bar|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000003.gif)||
 |Hidden -> BlurEffectStyleLight|![](https://github.com/ForterLi/ProjectResource/blob/master/FLNavigationBar/Screenshots/0000004.gif)||
