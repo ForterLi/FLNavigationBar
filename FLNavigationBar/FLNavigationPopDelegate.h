@@ -12,7 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FLNavigationPopDelegate <NSObject>
 
+@optional
 - (BOOL)barNavigationShouldPopOnBackButton;
+
+- (BOOL)interactivePopEnabled;
+
+- (BOOL)interactiveFullPopEnabled;
+
 
 @end
 

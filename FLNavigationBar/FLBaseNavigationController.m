@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FLBaseNavigationController.h"
 #import "FLNavigationBarPrivate.h"
+#import "FLNavigationPopDelegate.h"
 
 
 @interface FLBaseNavigationController ()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
@@ -77,6 +78,15 @@
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.interactivePopGestureRecognizer.enabled = YES;
+    self.interactivePopGestureRecognizer.enabled = YES;
+    __weak id<FLNavigationPopDelegate> weakVC = (id)viewController;
+    if ([weakVC respondsToSelector:@selector(interactivePopEnabled)]) {
+        self.interactivePopGestureRecognizer.enabled = [weakVC interactivePopEnabled];
+    }
+    if ([viewController respondsToSelector:@selector(interactiveFullPopEnabled)]) {
+        self.interactivePopGestureRecognizer.enabled = [weakVC interactivePopEnabled];
+    }
     [self->_baseNavigationBar endNavigation:viewController];
 }
 
