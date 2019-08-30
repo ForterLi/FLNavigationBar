@@ -95,6 +95,9 @@ class FLCustomNavigationController : UINavigationController,UINavigationControll
     }
 }
 ```
+## 更新
+* 兼容 `Large Mode` 
+* 兼容 `prompt title`
 
 ## 安装
 
