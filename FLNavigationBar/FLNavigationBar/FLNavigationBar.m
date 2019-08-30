@@ -113,7 +113,6 @@
     [super layoutSubviews];
     [self sendSubviewToBack:_customContainerView];
     [self gainSystemBackgroundView];
-    _constraintHeight.constant = _systemBackgroundView.bounds.size.height;
     [self barGainASystemView];
 }
 
@@ -142,6 +141,7 @@
 #pragma mark - Notification
 #pragma mark - Instance Private Methods
 - (void)barSetupViews {
+    [self gainSystemBackgroundView];
     _clearColor = UIColor.clearColor;
     _whiteAlphaZero = [UIColor.whiteColor colorWithAlphaComponent:0];
     _barUserInteractionEnabled = YES;
@@ -161,17 +161,7 @@
     customContainerView.backgroundColor = UIColor.clearColor;
     [self addSubview:customContainerView];
     _customContainerView = customContainerView;
-    NSLayoutConstraint *constraintBottom = [NSLayoutConstraint constraintWithItem:customContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    
-    NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:customContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
-    _constraintHeight = constraintHeight;
-    
-    NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:customContainerView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-    
-    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:customContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-    [self addConstraints:@[constraintLeft,constraintRight,constraintBottom,constraintHeight]];
-    
-    
+
     /// customVisualEffectView
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:[self transitionBlurEffectStyle:_barBlurEffectStyle]];
     UIVisualEffectView *customVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -229,6 +219,13 @@
         for (UIView *aView in self.subviews) {
             if ([aView isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
                 _systemBackgroundView = aView;
+                NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_systemBackgroundView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+                NSLayoutConstraint *constraintBottom = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+                
+                 NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+                 
+                 NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+                 [self addConstraints:@[constraintTop,constraintLeft,constraintRight,constraintBottom]];
             }
         }
     }
@@ -245,7 +242,7 @@
             }
         }
         if (_systemNavigationBarContentView) {
-            _systemNavigationBarContentView.layoutMargins = UIEdgeInsetsZero;
+//            _systemNavigationBarContentView.layoutMargins = UIEdgeInsetsZero;
         }
     }
 }

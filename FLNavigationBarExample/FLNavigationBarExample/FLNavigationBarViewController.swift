@@ -17,34 +17,99 @@ func FLRandomColor() -> UIColor {
 class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,FLNavigationPopDelegate {
     // MARK: - Class Public Methods
     // MARK: - Instance Public Methods
+    
     // MARK: - Property
     
-    var image:UIImage?
-    var barStyle:FLBarStyle?
-    var barBackgroundColor:UIColor?
-    var barBlurEffectStyle:FLBlurEffectStyle?
-    var isAloneBar:Bool = false
+    var image: UIImage?
+    var barStyle: FLBarStyle?
+    var barBackgroundColor: UIColor?
+    var barBlurEffectStyle: FLBlurEffectStyle?
+    var isAloneBar: Bool = false
+    
+    @IBOutlet weak var lineLab: UILabel!
+    var lineColor: UIColor?
+    var lineColorTemp: UIColor?
+    
+    var isPrompt: Bool = false
+    var isPromptTemp: Bool = false
+    
+    var largeTitleDisplayMode:UINavigationItem.LargeTitleDisplayMode = .never
+    var largeTitleDisplayModeTemp:UINavigationItem.LargeTitleDisplayMode = .never
     
     @IBOutlet weak var changeBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var barStyles:[[String:FLBlurEffectStyle]]!
-    var colors:[[String:UIColor]]!
-    var transparents:[String]!
-    var hiddenStyle:[String]!
+    let data:[[[String:Any]]] = [
+        [
+           ["Default":""]
+        ],
+        [
+            ["White":UIColor.white],
+            ["Random" : FLRandomColor()]
+        ],
+        [
+            ["Transparent":""]
+        ],
+        [
+            ["Hidden":""]
+        ],
+        [
+            ["ExtraLight": FLBlurEffectStyle.extraLight],
+            ["Lightk":FLBlurEffectStyle.light],
+            ["Dark":FLBlurEffectStyle.dark]
+        ],
+        [
+            ["Image":""],
+            ["Alone Bar":""]
+        ]
+    ]
+
+    let sentionTitles:[[String:Any]] = [
+        [
+            "style":FLBarStyle.default,
+            "title":"Default"
+        ],
+        [
+            "style":FLBarStyle.color,
+            "title":"Color"
+        ],
+        [
+            "style":FLBarStyle.transparent,
+            "title":"Transparent"
+        ],
+        [
+            "style":FLBarStyle.hidden,
+            "title":"Hidden"
+        ],
+        [
+            "style":FLBarStyle.translucent,
+            "title":"Translucent"
+        ],
+        [
+            "title":"Custom"
+        ],
+    ]
     
-    var customBar:[[String:Any]]!
-
-
     override var shouldAutorotate: Bool {
         get {
            return true
         }
     }
-    
+
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
+        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .done, target: nil, action: nil)
+        
         if barStyle != nil {
             self.navigationItem.yq_barStyle = barStyle!
         }
@@ -56,57 +121,45 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         if barBlurEffectStyle != nil {
             self.navigationItem.yq_barBlurEffectStyle = barBlurEffectStyle!
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         self.navigationItem.title = "bar"
         if self.barStyle == FLBarStyle.hidden {
             self.navigationItem.title = nil
         }
-        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .done, target: nil, action: nil)
+        if lineColor != nil {
+            self.navigationItem.yq_barLineColor = lineColor!
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initialize()
+        setupViews()
+  
+        /*~~~  Custom Bar Style   ~~*/
+        /// Alone Bar
         if isAloneBar {
             addAloneBarNavigationBar()
             self.alone_navigationItem.title = "bar"
         }
 
+        /// Imagse
         if image != nil {
              addAloneBarNavigationBar()
              self.alone_navigationItem.hidesBackButton = true;
              self.alone_barNavigationBar.setBackgroundImage(image, for: .default)
         }
         
-        // 默认样式
-        barStyles = [
-            ["BarStyleExtraLight": FLBlurEffectStyle.extraLight],
-            ["BarStyleLightk":FLBlurEffectStyle.light],
-            ["BarStyleDark":FLBlurEffectStyle.dark]
-            ]
+        if isPrompt {
+            if #available(iOS 11.0, *) {
+                self.navigationItem.prompt = "prompt title"
+            }
+        }
         
-        // color样式
-        colors = [
-        ["None" : UIColor.clear],
-        ["Black" : UIColor.black],
-        ["White" : UIColor.white],
-        ["Red" : UIColor.red],
-        ["Random" : FLRandomColor()]
-        ];
-        
-        // 透明样式
-        transparents = ["Transparent"]
-        
-        // 隐藏样式
-        hiddenStyle = ["Hidden"]
-        
-        // 图片样式
-        customBar = [
-            ["Image":""],
-            ["Alone Bar":""],
-        ];
-        tableView.reloadData()
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = largeTitleDisplayMode
+        }
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -117,54 +170,24 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
     
     // MARK: - Delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 { return barStyles.count}
-        else if section == 1 {return colors.count}
-        else if section == 2 {return transparents.count}
-        else if section == 3 {return hiddenStyle.count}
-        else if section == 4 {return customBar.count}
-        else {return 0};
+        let section = data[section] as [Any]
+        return section.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        switch indexPath.section {
-        case 0:
-            let item = barStyles[indexPath.row]
-            cell.textLabel?.text = item.keys.first
-            break
-        case 1:
-            let item = colors[indexPath.row]
-            cell.textLabel?.text = item.keys.first
-            break
-        case 2:
-            let item = transparents[indexPath.row]
-            cell.textLabel?.text = item
-            break
-        case 3:
-            let item = hiddenStyle[indexPath.row]
-            cell.textLabel?.text = item
-            break
-        case 4:
-            let item = customBar[indexPath.row]
-            cell.textLabel?.text = item.keys.first
-            break
-        default:
-            break
-        }
+        let item = data[indexPath.section][indexPath.row]
+        cell.textLabel?.text = item.keys.first
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 { return "Bar Style Default"}
-        else if section == 1 {return "Bar Style Color"}
-        else if section == 2 {return "Bar Style Transparent"}
-        else if section == 3 {return "Bar Style hidden"}
-        else if section == 4 {return "Custom Bar Stylee"}
-        else {return nil}
+       let ddd = sentionTitles[section]
+       return (ddd["title"] as! String)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -172,13 +195,11 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         
         switch indexPath.section {
         case 0:
-            vc.barStyle = .translucent
-            let item = barStyles[indexPath.row]
-            vc.barBlurEffectStyle = item.values.first!
+            vc.barStyle = .default
             break
         case 1:
+            let item = data[indexPath.section][indexPath.row] as! [String:UIColor]
             vc.barStyle = .color
-            let item = colors[indexPath.row]
             vc.barBackgroundColor = item.values.first!
             break
         case 2:
@@ -188,6 +209,11 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
             vc.barStyle = .hidden
             break
         case 4:
+            let item = data[indexPath.section][indexPath.row] as! [String:FLBlurEffectStyle]
+            vc.barStyle = .default
+            vc.barBlurEffectStyle = item.values.first!
+            break
+        default:
             if indexPath.row == 0 {
                 vc.barStyle = .transparent
                 vc.image = UIImage.init(named: "timg.jpg")
@@ -196,8 +222,11 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
                 vc.isAloneBar = true
             }
             break
-        default:
-            break
+        }
+        vc.lineColor = lineColorTemp
+        if vc.barStyle != .hidden {
+            vc.isPrompt = isPromptTemp
+            vc.largeTitleDisplayMode = largeTitleDisplayModeTemp
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -219,22 +248,65 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         changeBtn.backgroundColor = FLRandomColor()
     }
     
-    @IBAction func changeStyleAction(_ sender: Any) {
-        self.navigationItem.yq_barStyle = .transparent
+    @IBAction func changeStyleAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.navigationItem.yq_barStyle = .color
+            self.navigationItem.yq_barBackgroundColor = FLRandomColor()
+            break
+        case 1:
+            self.navigationItem.yq_barStyle = .default
+            break
+        case 2:
+            self.navigationItem.yq_barStyle = .transparent
+            break
+        case 3:
+            self.navigationItem.yq_barStyle = .translucent
+            break
+            
+        default:
+            break
+        }
         self.yq_barStyleUpdate()
     }
     
     @IBAction func lineColorAction(_ sender: Any) {
-        self.navigationItem.yq_barLineColor = FLRandomColor()
-        self.yq_barStyleUpdate()
+        lineColorTemp = FLRandomColor()
+        lineLab.textColor = lineColorTemp
     }
+    
+    @IBAction func promptSelectAction(_ sender: UISwitch) {
+         isPromptTemp = sender.isOn
+    }
+    
+    @IBAction func switchStyleAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            largeTitleDisplayModeTemp = .never
+            break
+        case 1:
+            largeTitleDisplayModeTemp = .automatic
+            break
+        case 2:
+            largeTitleDisplayModeTemp = .always
+            break
+        default:
+            break
+        }
+    }
+    
+    
     
     // MARK: - Notification
     // MARK: - Instance Private Methods
     
     // MARK: 初始化
-    func initialize() {}
+    func initialize() {
+        
+    }
     // MARK: 视图初始化
-    func setupViews() {}
+    func setupViews() {
+        tableView.reloadData()
+    }
     
 }

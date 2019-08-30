@@ -13,7 +13,6 @@
 		4C6335D0230CF016008EA141 /* FLCustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C6230CF016008EA141 /* FLCustomNavigationController.swift */; };
 		4C6335D1230CF016008EA141 /* FLNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */; };
 		4C6335D2230CF016008EA141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6335C8230CF016008EA141 /* AppDelegate.m */; };
-		4C6335F0230D090B008EA141 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335EF230D090A008EA141 /* timg.jpg */; };
 		4C6335F3230D1ADD008EA141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */; };
 		4C8D5C61230E88A800451F9E /* UIScreen+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */; };
 		4C8D5C62230E88A800451F9E /* UIDevice+FLAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */; };
@@ -35,7 +34,6 @@
 		4C6335C7230CF016008EA141 /* FLNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLNavigationBarViewController.swift; sourceTree = "<group>"; };
 		4C6335C8230CF016008EA141 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4C6335C9230CF016008EA141 /* FLBaseKit-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLBaseKit-Bridging-Header.h"; sourceTree = "<group>"; };
-		4C6335EF230D090A008EA141 /* timg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpg; sourceTree = "<group>"; };
 		4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C8D5C4D230E88A800451F9E /* FLBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBaseNavigationController.h; sourceTree = "<group>"; };
 		4C8D5C4E230E88A800451F9E /* UINavigationItem+FLBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+FLBar.h"; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 		4C6335BC230CF016008EA141 /* FLNavigationBarExample */ = {
 			isa = PBXGroup;
 			children = (
-				4C6335EF230D090A008EA141 /* timg.jpg */,
 				4C6335F2230D1ADD008EA141 /* LaunchScreen.storyboard */,
 				4C6335C2230CF016008EA141 /* Main.storyboard */,
 				4C6335C6230CF016008EA141 /* FLCustomNavigationController.swift */,
@@ -134,9 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				4C8D5C51230E88A800451F9E /* FLAloneNavigationBar.h */,
+				4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */,
 				4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */,
 				4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */,
-				4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */,
 				4C8D5C55230E88A800451F9E /* UIDevice+FLAdd.h */,
 				4C8D5C56230E88A800451F9E /* UIScreen+FLAdd.h */,
 			);
@@ -209,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C6335F0230D090B008EA141 /* timg.jpg in Resources */,
 				4C6335CE230CF016008EA141 /* Main.storyboard in Resources */,
 				4C6335CC230CF016008EA141 /* Assets.xcassets in Resources */,
 				4C6335F3230D1ADD008EA141 /* LaunchScreen.storyboard in Resources */,
