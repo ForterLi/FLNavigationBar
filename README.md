@@ -96,6 +96,7 @@ class FLCustomNavigationController : UINavigationController,UINavigationControll
 }
 ```
 ## 更新
+* ViewController 单独控制侧滑 全屏侧滑 pop
 * 兼容 `Large Mode` 
 * 兼容 `prompt title`
 
