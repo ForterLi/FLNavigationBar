@@ -210,7 +210,7 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
             break
         case 4:
             let item = data[indexPath.section][indexPath.row] as! [String:FLBlurEffectStyle]
-            vc.barStyle = .default
+            vc.barStyle = .translucent
             vc.barBlurEffectStyle = item.values.first!
             break
         default:
