@@ -149,6 +149,19 @@
     _defaultLintColor = [UIColor colorWithRed:216./255. green:216./255. blue:216./255. alpha:1];
     _defaultBlurEffectStyle = FLBlurEffectStyleLight;
     
+    if (@available(iOS 13.0, *)) {
+        _defaultLintColor = [[UIColor alloc] initWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+             switch (traitCollection.userInterfaceStyle) {
+                 case UIUserInterfaceStyleDark:
+                     return [UIColor.whiteColor colorWithAlphaComponent:0];
+                 case UIUserInterfaceStyleLight:
+                 default:
+                     return [UIColor colorWithRed:216./255. green:216./255. blue:216./255. alpha:1];
+             }
+         }];
+        _defaultBlurEffectStyle = FLBlurEffectStyleRegular;
+    }
+    
     _barCustomStyle = FLBarStyleDefault;
     _barLineColor = _defaultLintColor;
     _barBackgroundColor = _defaultBarColor;
@@ -326,15 +339,26 @@
 
 - (UIBlurEffectStyle)transitionBlurEffectStyle:(FLBlurEffectStyle)style {
     switch (style) {
-        case FLBlurEffectStyleLight:
-            return UIBlurEffectStyleLight;
         case FLBlurEffectStyleExtraLight:
             return UIBlurEffectStyleExtraLight;
+        case FLBlurEffectStyleLight:
+            return UIBlurEffectStyleLight;
         case FLBlurEffectStyleDark:
             return UIBlurEffectStyleDark;
         default:
-            return UIBlurEffectStyleLight;
+            if (@available(iOS 11.0, *)) {
+                switch (style) {
+                    case FLBlurEffectStyleRegular:
+                        return UIBlurEffectStyleRegular;
+                    case FLBlurEffectStyleProminent:
+                        return UIBlurEffectStyleProminent;
+                    default:
+                        break;
+                }
+            }
+            break;
     }
+    return UIBlurEffectStyleLight;
 }
 
 #pragma mark - Setters

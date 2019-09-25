@@ -23,7 +23,9 @@ typedef NS_ENUM(NSInteger, FLBlurEffectStyle) {
     FLBlurEffectStyleNone = 0,
     FLBlurEffectStyleExtraLight,
     FLBlurEffectStyleLight,
-    FLBlurEffectStyleDark
+    FLBlurEffectStyleDark,
+    FLBlurEffectStyleRegular API_AVAILABLE(ios(10.0)),
+    FLBlurEffectStyleProminent API_AVAILABLE(ios(10.0)),
 };
 
 #endif /* FLNavigationBarCommon_h */
