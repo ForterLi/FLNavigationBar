@@ -15,10 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (BOOL)barNavigationShouldPopOnBackButton;
 
-- (BOOL)interactivePopEnabled;
+- (BOOL)interactiveShouldPopOnBack;
 
-- (BOOL)interactiveFullPopEnabled;
-
+- (BOOL)fullScreenShouldPopOnBack;
 
 @end
 

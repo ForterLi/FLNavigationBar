@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FLBaseNavigationController.h"
 #import "FLNavigationBarPrivate.h"
+#import "UIViewController+FLBar.h"
 #import "FLNavigationPopDelegate.h"
+#import "UINavigationItem+FLBar.h"
+
 
 
 @interface FLBaseNavigationController ()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
@@ -20,6 +23,7 @@
 @implementation FLBaseNavigationController {
     __weak FLNavigationBar *_baseNavigationBar;
     __weak UIPanGestureRecognizer *_fullScreenPopPanGesture;
+    NSInteger _currentChildCount;
 }
 
 #pragma mark - Class Public Methods
@@ -30,27 +34,21 @@
 
 
 #pragma mark - Life Cycle
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    return self;
-}
-
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
-    self = [super initWithNavigationBarClass:FLNavigationBar.class toolbarClass:nil];
+    self = [super initWithNavigationBarClass:[FLNavigationBar class] toolbarClass:nil];
     if (self) {
         self.viewControllers = @[rootViewController];
     }
     return self;
 }
 
-
-- (void)loadView
-{
+- (void)loadView {
     [super loadView];
     [self setupViews];
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -64,30 +62,23 @@
     _fullScreenPopPanGesture = fullScreenPopPanGesture;
     
     self.interactivePopGestureRecognizer.delegate = (id)self;
-    [_baseNavigationBar endNavigation:self.topViewController];
+    [self endBar:self.topViewController];
 }
 
 #pragma mark - Delegate
 #pragma mark UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        [self->_baseNavigationBar updateNavigation:context];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        [self->_baseNavigationBar endNavigation:self.topViewController];
-    }];
+//    if (navigationController.childViewControllers.count > _currentChildCount) {
+//        NSLog(@"push");
+//    }else{
+//        NSLog(@"pop");
+//    }
+//    _currentChildCount = navigationController.childViewControllers.count;
+    [self startBar];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    self.interactivePopGestureRecognizer.enabled = YES;
-    self.interactivePopGestureRecognizer.enabled = YES;
-    __weak id<FLNavigationPopDelegate> weakVC = (id)viewController;
-    if ([weakVC respondsToSelector:@selector(interactivePopEnabled)]) {
-        self.interactivePopGestureRecognizer.enabled = [weakVC interactivePopEnabled];
-    }
-    if ([viewController respondsToSelector:@selector(interactiveFullPopEnabled)]) {
-        self.interactivePopGestureRecognizer.enabled = [weakVC interactivePopEnabled];
-    }
-    [self->_baseNavigationBar endNavigation:viewController];
+    [self endBar:viewController];
 }
 
 #pragma mark - Event Reponse
@@ -111,10 +102,35 @@
     if (self.childViewControllers.count < 2) {
         return NO;
     }
+
+    UIViewController<FLNavigationPopDelegate> *currentVC = ((UIViewController <FLNavigationPopDelegate> *)self.topViewController);
+    if (gestureRecognizer == self.interactivePopGestureRecognizer) {
+        if (currentVC.interactivePopEnabled == NO) {
+            return NO;
+        }
+        
+        if ([currentVC respondsToSelector:@selector(interactiveShouldPopOnBack)]) {
+            if ([currentVC interactiveShouldPopOnBack] == NO) {
+                return NO;
+            }
+        }
+    }
+    
     if (gestureRecognizer == _fullScreenPopPanGesture) {
+    
+        if (currentVC.fullScreenPopEnabled == NO) {
+            return NO;
+        }
+        
+        if ([currentVC respondsToSelector:@selector(fullScreenShouldPopOnBack)]) {
+            if ([currentVC fullScreenShouldPopOnBack] == NO) {
+                return NO;
+            }
+        }
+        
         CGPoint point = [_fullScreenPopPanGesture velocityInView:self.view];
         if (fabs(point.x) > fabs(point.y) && point.x > 0){}else{
-            return NO;
+            return  NO;
         }
     }
     return YES;

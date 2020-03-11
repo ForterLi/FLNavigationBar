@@ -30,3 +30,5 @@
 @property (nonatomic, class, assign) CGRect barFrame;
 
 @end
+
+

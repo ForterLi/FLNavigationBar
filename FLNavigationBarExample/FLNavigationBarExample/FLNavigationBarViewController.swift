@@ -15,6 +15,7 @@ func FLRandomColor() -> UIColor {
 }
 
 class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,FLNavigationPopDelegate {
+    
     // MARK: - Class Public Methods
     // MARK: - Instance Public Methods
     
@@ -99,6 +100,15 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
+        var bars:[UIBarButtonItem] = []
+        for _ in 0...2 {
+            let barView = UIView.init(frame: .init(origin: .zero, size: .init(width: 44, height: 44)));
+            barView.backgroundColor = FLRandomColor();
+            let barItem = UIBarButtonItem.init(customView: barView)
+            bars.append(barItem)
+        }
+        self.navigationItem.rightBarButtonItems = bars
+        
         self.automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never

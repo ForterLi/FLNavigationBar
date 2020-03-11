@@ -7,7 +7,6 @@
 //
 
 #import "UINavigationItem+FLBar.h"
-#import "FLNavigationBar.h"
 #import <objc/runtime.h>
 
 @implementation UINavigationItem (FLBar)
@@ -50,6 +49,19 @@
         return;
     }
     objc_setAssociatedObject(self, @selector(yq_barBlurEffectStyle), [NSNumber numberWithInteger:yq_barBlurEffectStyle], OBJC_ASSOCIATION_ASSIGN);
+}
+
+
+- (BOOL)yq_customHidesBackButton {
+    NSInteger isCustom = [objc_getAssociatedObject(self, _cmd) boolValue];
+    return isCustom;
+}
+
+- (void)setYq_customHidesBackButton:(BOOL)yq_customHidesBackButton {
+    if (self.yq_customHidesBackButton == yq_customHidesBackButton) {
+          return;
+      }
+      objc_setAssociatedObject(self, @selector(yq_customHidesBackButton), [NSNumber numberWithInteger:yq_customHidesBackButton], OBJC_ASSOCIATION_ASSIGN);
 }
 
 

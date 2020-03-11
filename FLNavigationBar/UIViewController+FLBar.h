@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FLAloneNavigationBar;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)endBar:(UIViewController *)viewController;
 
 @end
-
-
 
 
 @interface UIViewController (FLBar)
@@ -52,6 +51,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+@interface UIViewController (FLPop)
+
+@property BOOL fullScreenPopEnabled;
+
+@property BOOL interactivePopEnabled;
+
+@end
+
+
+@interface  UIViewController (FLBackButton)
+/*
+ * 添加返回按钮
+ */
+- (void)addBackButton;
+
+@end
 
 
 NS_ASSUME_NONNULL_END

@@ -8,10 +8,11 @@
 
 
 #import "FLNavigationBar.h"
-#import "FLNavigationPopDelegate.h"
 #import "UIScreen+FLAdd.h"
 #import "UINavigationItem+FLBar.h"
 #import "FLNavigationBarPrivate.h"
+#import <objc/runtime.h>
+
 
 
 
@@ -122,19 +123,6 @@
         return nil;
     }
     return [super hitTest:point withEvent:event];
-}
-
-// TODO: 获取页面最上面的视图
-- (UINavigationItem *)popNavigationItemAnimated:(BOOL)animated {
-    BOOL isBack = YES;
-    if ([self.currentNavigationController.topViewController respondsToSelector:@selector(barNavigationShouldPopOnBackButton)]) {
-        id currentVC = self.currentNavigationController.topViewController;
-        isBack = [currentVC barNavigationShouldPopOnBackButton];
-    }
-    if(isBack){
-        return [super popNavigationItemAnimated:animated];
-    }
-    return nil;
 }
 
 #pragma mark - Event Reponse
@@ -255,7 +243,6 @@
             }
         }
         if (_systemNavigationBarContentView) {
-//            _systemNavigationBarContentView.layoutMargins = UIEdgeInsetsZero;
         }
     }
 }
@@ -307,6 +294,14 @@
     _customVisualEffectView.alpha = _tempVisualEffectViewAlpha;
     item.hidesBackButton = _tempHidesBackButton;
     _barUserInteractionEnabled = _tempBarUserInteractionEnabled;
+    
+    if (item.yq_customHidesBackButton == NO ) {
+        if (item.yq_barStyle == FLBarStyleHidden) {
+            item.hidesBackButton = YES;
+        }else{
+            item.hidesBackButton = NO;
+        }
+     }
     if (_tempBarBlurEffectStyle != _currentBarBlurEffectStyle) {
         _customVisualEffectView.effect = [UIBlurEffect effectWithStyle:_tempBarBlurEffectStyle];
         _currentBarBlurEffectStyle = _tempBarBlurEffectStyle;
@@ -378,5 +373,57 @@
     _barBlurEffectStyle = barBlurEffectStyle;
 }
 #pragma mark - Getters
+
+@end
+
+
+void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
+    NSString *newSelector = [NSString stringWithFormat:@"yq_%@", oldSelector];
+    Method old = class_getInstanceMethod(oldClass, NSSelectorFromString(oldSelector));
+    Method new = class_getInstanceMethod(newClass, NSSelectorFromString(newSelector));
+    method_exchangeImplementations(old, new);
+}
+@implementation NSObject (YQFixSpace)
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (@available(iOS 11.0, *)) {
+            NSArray<NSDictionary<NSString *,NSString *> *> *oriSels = @[
+                @{
+                    @"cls":@"_UINavigationBarContentViewLayout",
+                    @"sel":@"_updateMarginConstraints"
+                }
+            ];
+            [oriSels enumerateObjectsUsingBlock:^(NSDictionary<NSString *,NSString *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                yq_swizzle(NSClassFromString(obj[@"cls"]), obj[@"sel"], FLNavigationBar.class);
+            }];
+        }
+    });
+}
+
+
+- (void)yq__updateMarginConstraints {
+    @try {
+        if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentViewLayout")]){
+            [self yq__updateMarginConstraints];
+            return;
+        }
+        UIView *barContentView = [self valueForKey:@"contentView"];
+        if (![barContentView.superview isKindOfClass:FLNavigationBar.class]){
+            [self yq__updateMarginConstraints];
+            return;
+        }
+        for (UIView *sub in barContentView.subviews) {
+            if ([sub isMemberOfClass: NSClassFromString(@"_UIButtonBarStackView")]) {
+                if (@available(iOS 9.0, *)) {
+                    UIStackView *stack = (UIStackView *)sub;
+                    stack.distribution = UIStackViewDistributionFillProportionally;
+                }
+            }
+        }
+        [self setValue:@(UIEdgeInsetsMake(0, 0, 0, 0)) forKey:@"_layoutMargins"];
+        [self yq__updateMarginConstraints];
+    } @catch (NSException *exception) {} @finally {}
+}
 
 @end

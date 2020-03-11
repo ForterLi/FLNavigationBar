@@ -8,31 +8,8 @@
 
 #import "UIViewController+FLBar.h"
 #import "FLNavigationBarPrivate.h"
-
-
-@implementation UINavigationController (FLBar)
-
-- (void)startBar {
-    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
-        return;
-    }
-    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
-    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        [bar updateNavigation:context];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        [bar endNavigation:self.topViewController];
-    }];
-}
-
-- (void)endBar:(UIViewController *)viewController {
-    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
-        return;
-    }
-    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
-    [bar endNavigation:viewController];
-}
-
-@end
+#import "FLNavigationPopDelegate.h"
+#import <objc/runtime.h>
 
 
 @implementation UIViewController (FLBar)
@@ -48,8 +25,6 @@
 }
 
 @end
-
-
 
 
 static NSMapTable * mapVC() {
@@ -95,3 +70,62 @@ static NSMapTable * mapVC() {
     return bar.topItem;
 }
 @end
+
+
+@implementation UIViewController (FLPop)
+
+- (void)setFullScreenPopEnabled:(BOOL)fullScreenPopEnabled {
+    objc_setAssociatedObject(self, @selector(fullScreenPopEnabled), [NSNumber numberWithBool:fullScreenPopEnabled], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)fullScreenPopEnabled {
+      id num = objc_getAssociatedObject(self, _cmd);
+      if (num == nil) {
+          return YES;
+      }
+      return [num boolValue];
+}
+
+- (void)setInteractivePopEnabled:(BOOL)interactivePopEnabled {
+     objc_setAssociatedObject(self, @selector(interactivePopEnabled), [NSNumber numberWithBool:interactivePopEnabled], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)interactivePopEnabled {
+    id num = objc_getAssociatedObject(self, _cmd);
+    if (num == nil) {
+        return YES;
+    }
+    return [num boolValue];
+}
+
+@end
+
+
+
+@implementation UINavigationController (FLBar)
+
+- (void)startBar {
+    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
+        return;
+    }
+    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
+    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [bar updateNavigation:context];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [bar endNavigation:self.topViewController];
+    }];
+}
+
+- (void)endBar:(UIViewController *)viewController {
+    if (![self.navigationBar isKindOfClass:FLNavigationBar.class]) {
+        return;
+    }
+    FLNavigationBar *bar = (FLNavigationBar *)self.navigationBar;
+    [bar endNavigation:viewController];
+}
+
+
+@end
+
+
+

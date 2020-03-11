@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) FLBlurEffectStyle yq_barBlurEffectStyle;
 
+@property (nonatomic, assign) BOOL yq_customHidesBackButton;
+
 @end
 
 NS_ASSUME_NONNULL_END
