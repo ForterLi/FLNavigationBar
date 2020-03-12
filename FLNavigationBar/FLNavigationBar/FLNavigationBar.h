@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FLNavigationBar : UINavigationBar
 
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,6 +19,12 @@ typedef NS_ENUM(NSInteger, FLBarStyle) {
     FLBarStyleTranslucent,            // 毛玻璃效果可以修改样式
 };
 
+typedef NS_ENUM(NSInteger, FLAloneBarStyle) {
+    FLAloneBarStyleDefault = 0xf,         // 默认毛玻璃效果
+    FLAloneBarStyleColor,                  // 颜色
+    FLAloneBarStyleTransparent,            // 透明
+};
+
 typedef NS_ENUM(NSInteger, FLBlurEffectStyle) {
     FLBlurEffectStyleNone = 0,
     FLBlurEffectStyleExtraLight,

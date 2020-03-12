@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FLNavigationBar.h"
+#import "FLNavigationBarCommon.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FLAloneNavigationBar : UINavigationBar
+@interface FLAloneNavigationBar : FLNavigationBar
 
+@property (nonatomic) FLAloneBarStyle barCustomStyle;
+@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *lineShadowColor;
+@property (nonatomic, assign) UIBlurEffectStyle effectStyle;
+ 
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 

@@ -100,14 +100,6 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        var bars:[UIBarButtonItem] = []
-        for _ in 0...2 {
-            let barView = UIView.init(frame: .init(origin: .zero, size: .init(width: 44, height: 44)));
-            barView.backgroundColor = FLRandomColor();
-            let barItem = UIBarButtonItem.init(customView: barView)
-            bars.append(barItem)
-        }
-        self.navigationItem.rightBarButtonItems = bars
         
         self.automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
@@ -146,13 +138,6 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         initialize()
         setupViews()
   
-        /*~~~  Custom Bar Style   ~~*/
-        /// Alone Bar
-        if isAloneBar {
-            addAloneBarNavigationBar()
-            self.alone_navigationItem.title = "bar"
-        }
-
         /// Imagse
         if image != nil {
              addAloneBarNavigationBar()
@@ -169,6 +154,28 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = largeTitleDisplayMode
         }
+        
+        
+        var bars:[UIBarButtonItem] = []
+        for _ in 0...2 {
+            let barView = UIView.init(frame: .init(origin: .zero, size: .init(width: 44, height: 44)));
+            barView.backgroundColor = FLRandomColor();
+            let barItem = UIBarButtonItem.init(customView: barView)
+            bars.append(barItem)
+        }
+        
+        /*~~~  Custom Bar Style   ~~*/
+        /// Alone Bar
+        if isAloneBar {
+            addAloneBarNavigationBar()
+            self.alone_navigationItem.title = "bar"
+            self.alone_barNavigationBar.isTranslucent = false
+            self.alone_barNavigationBar.backgroundColor = UIColor.yellow
+            self.alone_navigationItem.rightBarButtonItems = bars
+        }else{
+            self.navigationItem.rightBarButtonItems = bars
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {

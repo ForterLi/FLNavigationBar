@@ -7,7 +7,7 @@
 //
 
 #import "FLAloneNavigationBar.h"
-
+#import "FLNavigationBarPrivate.h"
 #import "UIScreen+FLAdd.h"
 
 @interface UIView (AloneBar)
@@ -16,22 +16,22 @@
 
 @end
 
-@interface FLAloneNavigationBar ()
+@interface FLAloneNavigationBar () {
+    UIColor *_color;
+}
 
 @property(nonatomic, weak) UIViewController *currentViewController;
+
 
 @end
 
 @implementation FLAloneNavigationBar {
     //  system view
-    __weak UIView *_systemBackgroundView;
-    __weak UIView *_systemNavigationBarContentView;
-    
     NSLayoutConstraint *_constraintTop;
     NSLayoutConstraint *_constraintHeight;
-    
+
     __weak UIView *_currentSuperview;
-    
+
     NSArray *_barConstraints;
 }
 
@@ -39,11 +39,6 @@
 #pragma mark - Instance Public Methods
 #pragma mark - Life Cycle
 
-- (instancetype)init {
-    self = [super init];
-    [self initialize];
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -54,6 +49,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSAssert(false, @"not xib");
     self = [super initWithCoder:aDecoder];
+    [self initialize];
     return self;
 }
 
@@ -80,6 +76,7 @@
         _currentSuperview = self.superview;
         [self addLayoutView];
     }
+    [self _updateBarStyle];
 }
 
 - (void)removeFromSuperview {
@@ -91,8 +88,9 @@
     [super layoutSubviews];
     _constraintTop.constant = kStatusBarHeighOrientation();
     _constraintHeight.constant = kNavgationBarHeightOrientation();
-    [self gainSystemBackgroundView];
-    [self barGainASystemView];
+    if (self.systemBackgroundView) {
+        self.systemBackgroundView.frame = CGRectMake(0, -kStatusBarHeighOrientation(), kScreenWidth,kStatusBarHeighOrientation() + kNavgationBarHeightOrientation());
+    }
 }
 
 #pragma mark - Notification
@@ -106,41 +104,18 @@
     [self pushNavigationItem:backItem animated:NO];
     UINavigationItem *topItem = [[UINavigationItem alloc] init];
     [self pushNavigationItem:topItem animated:NO];
+    _effectStyle = UIBlurEffectStyleExtraLight;
+    _barCustomStyle = FLAloneBarStyleDefault;
+    self.customVisualEffectView.alpha = 1;
+    self.customBackgroundView.alpha = 1;
+    self.customLineShadowView.alpha = 1;
+    [self _updateBarStyle];
 }
+
 
 // MARK: systemBackgroundView
-- (void)gainSystemBackgroundView {
-    if (_systemBackgroundView == nil) {
-        for (UIView *aView in self.subviews) {
-            if ([aView isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
-                _systemBackgroundView = aView;
-            }
-        }
-    }
-    if (_systemBackgroundView) {
-        CGRect rect = _systemBackgroundView.frame;
-        rect.origin.y = -CGRectGetMinY(self.frame);
-        rect.size.height = CGRectGetMaxY(self.frame);
-        _systemBackgroundView.frame = rect;
-    }
-}
 
 // MARK: layoutMargins 设置
-- (void)barGainASystemView {
-    if (@available(iOS 11.0, *)) {
-        if (!_systemNavigationBarContentView) {
-            for (UIView *subView in self.subviews) {
-                if ([NSStringFromClass([subView class]) isEqualToString:@"_UINavigationBarContentView"]) {
-                    _systemNavigationBarContentView = subView;
-                }
-            }
-        }
-        if (_systemNavigationBarContentView) {
-//            _systemNavigationBarContentView.layoutMargins = UIEdgeInsetsZero;
-        }
-    }
-}
-
 - (void)addLayoutView {
     if (_barConstraints == nil) {
         if (!self.superview) {
@@ -148,12 +123,12 @@
         }
         NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
         _constraintTop = constraintTop;
-        
+
         NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
         _constraintHeight = constraintHeight;
-        
+
         NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-        
+
         NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
         _barConstraints = @[constraintLeft,constraintRight,constraintTop,constraintHeight];
     }
@@ -167,9 +142,53 @@
     }
 }
 
+- (void)_updateBarStyle {
+    switch (_barCustomStyle) {
+        case FLAloneBarStyleColor:
+            if (self.customVisualEffectView.isHidden == NO) self.customVisualEffectView.hidden = YES;
+            if (self.customBackgroundView.isHidden == YES) self.customBackgroundView.hidden = NO;
+            break;
+        case FLAloneBarStyleTransparent:
+            if (self.customVisualEffectView.isHidden == NO) self.customVisualEffectView.hidden = YES;
+            if (self.customBackgroundView.isHidden == NO) self.customBackgroundView.hidden = YES;
+            break;
+        case FLAloneBarStyleDefault:
+        default:
+            if (self.customVisualEffectView.isHidden == YES) self.customVisualEffectView.hidden = NO;
+            if (self.customBackgroundView.isHidden == NO) self.customBackgroundView.hidden = YES;
+            break;
+    }
+    self.customBackgroundView.backgroundColor = _color;
+    self.customLineShadowView.backgroundColor = _lineShadowColor;
+    self.customVisualEffectView.effect = [UIBlurEffect effectWithStyle:_effectStyle];
+}
+
+
 #pragma mark - Class Private Methods
 #pragma mark - Modules
+- (UIColor *)backgroundColor {
+    return _color;
+}
+
 #pragma mark - Setters
+- (void)setBarCustomStyle:(FLAloneBarStyle)barCustomStyle {
+    _barCustomStyle = barCustomStyle;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _color = backgroundColor;
+    [self _updateBarStyle];
+}
+
+- (void)setLineShadowColor:(UIColor *)lineShadowColor {
+    _lineShadowColor = lineShadowColor;
+    [self _updateBarStyle];
+}
+
+- (void)setEffectStyle:(UIBlurEffectStyle)effectStyle {
+    _effectStyle = effectStyle;
+    [self _updateBarStyle];
+}
 
 @end
 

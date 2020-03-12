@@ -12,6 +12,12 @@
 
 @interface FLNavigationBar (Private)
 
+@property (readonly) UIView *systemBackgroundView;
+@property (readonly) UIView *customContainerView;
+@property (readonly) UIView *customBackgroundView;
+@property (readonly) UIVisualEffectView *customVisualEffectView;
+@property (readonly) UIView *customLineShadowView;
+
 @property UINavigationController *currentNavigationController;
 @property FLBarStyle barCustomStyle;
 @property FLBlurEffectStyle barBlurEffectStyle;

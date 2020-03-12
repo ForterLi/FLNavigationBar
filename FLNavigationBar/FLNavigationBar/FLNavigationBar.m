@@ -14,9 +14,6 @@
 #import <objc/runtime.h>
 
 
-
-
-
 @interface FLNavigationBar ()
 
 @property (nonatomic, assign) FLBarStyle barCustomStyle;
@@ -89,14 +86,6 @@
 #pragma mark - Life Cycle
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self barSetupViews];
-    }
-    return self;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
         [self barSetupViews];
     }
     return self;
@@ -372,7 +361,25 @@
 - (void)setBarBlurEffectStyle:(FLBlurEffectStyle)barBlurEffectStyle {
     _barBlurEffectStyle = barBlurEffectStyle;
 }
+
 #pragma mark - Getters
+- (UIView *)systemBackgroundView {
+    return _systemBackgroundView;
+}
+
+- (UIVisualEffectView *)customVisualEffectView {
+    return _customVisualEffectView;
+}
+
+- (UIView *)customBackgroundView {
+    return _customBackgroundView;
+}
+
+- (UIView *)customLineShadowView {
+    return _customLineShadowView;
+}
+
+- (void)setTranslucent:(BOOL)translucent{}
 
 @end
 
@@ -421,9 +428,9 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
                 }
             }
         }
-        [self setValue:@(UIEdgeInsetsMake(0, 0, 0, 0)) forKey:@"_layoutMargins"];
-        [self yq__updateMarginConstraints];
+        [self setValue:@(UIEdgeInsetsZero) forKey:@"_layoutMargins"];
     } @catch (NSException *exception) {} @finally {}
+    [self yq__updateMarginConstraints];
 }
 
 @end

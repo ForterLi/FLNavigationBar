@@ -47,8 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addAloneBarNavigationBar;
 
-- (void)aloneBarViewDidLayoutSubviews;
+- (void)removeAloneBarNavigationBar;
 
+- (void)aloneBarViewDidLayoutSubviews;
 @end
 
 

@@ -39,9 +39,20 @@ static NSMapTable * mapVC() {
 
 - (void)addAloneBarNavigationBar {
     FLAloneNavigationBar *bar = self.aloneBarNavigationBar;
-    [self.view addSubview:bar];
+    if (!bar) {
+        bar = [[FLAloneNavigationBar alloc] init];
+        [mapVC() setObject:bar forKey:self];
+    }
+    if (bar.superview == nil) {
+       [self.view addSubview:bar];
+    }
 }
 
+- (void)removeAloneBarNavigationBar {
+    FLAloneNavigationBar *bar = self.aloneBarNavigationBar;
+    [bar removeFromSuperview];
+    [mapVC() removeObjectForKey:self];
+}
 
 - (void)aloneBarViewDidLayoutSubviews {
     FLAloneNavigationBar *bar = [mapVC() objectForKey:self];
@@ -53,10 +64,6 @@ static NSMapTable * mapVC() {
 
 - (FLAloneNavigationBar *)aloneBarNavigationBar {
     FLAloneNavigationBar *bar = [mapVC() objectForKey:self];
-    if (!bar) {
-        bar = [[FLAloneNavigationBar alloc] init];
-        [mapVC() setObject:bar forKey:self];
-    }
     return bar;
 }
 
