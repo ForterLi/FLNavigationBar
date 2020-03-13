@@ -18,7 +18,7 @@
 @property (readonly) UIVisualEffectView *customVisualEffectView;
 @property (readonly) UIView *customLineShadowView;
 
-@property UINavigationController *currentNavigationController;
+@property UIViewController *currentViewController;
 @property FLBarStyle barCustomStyle;
 @property FLBlurEffectStyle barBlurEffectStyle;
 @property UIColor *barLineColor;
@@ -27,6 +27,7 @@
 - (void)updateNavigation:(id<UIViewControllerTransitionCoordinatorContext>)context;
 - (void)endNavigation:(UIViewController *)currentVC;
 - (void)barStyleUpdate;
+- (BOOL)allowBackAction;
 
 @end
 

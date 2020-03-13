@@ -173,7 +173,9 @@ class FLNavigationBarViewController: UIViewController,UITableViewDelegate,UITabl
             self.alone_barNavigationBar.backgroundColor = UIColor.yellow
             self.alone_navigationItem.rightBarButtonItems = bars
         }else{
-            self.navigationItem.rightBarButtonItems = bars
+            if self.barStyle != FLBarStyle.hidden {
+                self.navigationItem.rightBarButtonItems = bars
+            }
         }
         
     }

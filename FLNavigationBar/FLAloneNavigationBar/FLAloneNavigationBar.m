@@ -20,9 +20,6 @@
     UIColor *_color;
 }
 
-@property(nonatomic, weak) UIViewController *currentViewController;
-
-
 @end
 
 @implementation FLAloneNavigationBar {
@@ -53,21 +50,6 @@
     return self;
 }
 
-#pragma mark - Delegate
-- (UINavigationItem *)popNavigationItemAnimated:(BOOL)animated {
-    BOOL isBack = YES;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    if ([self.currentViewController respondsToSelector:@selector(barNavigationShouldPopOnBackButton)]) {
-        char resultChar = (char)[self.currentViewController performSelector:@selector(barNavigationShouldPopOnBackButton)];
-        isBack = [[NSNumber numberWithChar:resultChar] boolValue];
-    }
-#pragma clang diagnostic pop
-    if (isBack) {
-        [self.currentViewController.navigationController popViewControllerAnimated:YES];
-    }
-    return nil;
-}
 #pragma mark - Event Reponse
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
@@ -104,11 +86,24 @@
     [self pushNavigationItem:backItem animated:NO];
     UINavigationItem *topItem = [[UINavigationItem alloc] init];
     [self pushNavigationItem:topItem animated:NO];
+    _lineShadowColor = [UIColor colorWithRed:216./255. green:216./255. blue:216./255. alpha:1];
     _effectStyle = UIBlurEffectStyleExtraLight;
     _barCustomStyle = FLAloneBarStyleDefault;
     self.customVisualEffectView.alpha = 1;
     self.customBackgroundView.alpha = 1;
     self.customLineShadowView.alpha = 1;
+    if (@available(iOS 13.0, *)) {
+         _lineShadowColor = [[UIColor alloc] initWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+              switch (traitCollection.userInterfaceStyle) {
+                  case UIUserInterfaceStyleDark:
+                      return [UIColor.whiteColor colorWithAlphaComponent:0];
+                  case UIUserInterfaceStyleLight:
+                  default:
+                      return [UIColor colorWithRed:216./255. green:216./255. blue:216./255. alpha:1];
+              }
+          }];
+         _effectStyle = UIBlurEffectStyleRegular;
+     }
     [self _updateBarStyle];
 }
 

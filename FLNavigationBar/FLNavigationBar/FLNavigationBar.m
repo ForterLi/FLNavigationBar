@@ -20,7 +20,8 @@
 @property (nonatomic, assign) FLBlurEffectStyle barBlurEffectStyle;
 @property (nonatomic, strong) UIColor *barLineColor;
 @property (nonatomic, strong) UIColor *barBackgroundColor;
-@property (nonatomic, weak)   UINavigationController *currentNavigationController;
+
+@property (nonatomic, weak)  UIViewController *currentViewController;
 
 @end
 
@@ -69,12 +70,14 @@
 - (void)updateNavigation:(id<UIViewControllerTransitionCoordinatorContext>)context {
     UIViewController *toVC  = [context viewControllerForKey:UITransitionContextToViewControllerKey];
     if (!toVC)return;
+    self.currentViewController = toVC;
     [self barStyleWithItem:toVC.navigationItem];
 }
 
 // MARK: end update bar style
 - (void)endNavigation:(UIViewController *)currentVC {
     if (!currentVC)return;
+    self.currentViewController = currentVC;
     [self barStyleWithItem:currentVC.navigationItem];
 }
 
@@ -101,9 +104,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self sendSubviewToBack:_customContainerView];
     [self gainSystemBackgroundView];
     [self barGainASystemView];
+    [self sendSubviewToBack:_customContainerView];
 }
 
 #pragma mark - Event Reponse
@@ -114,11 +117,16 @@
     return [super hitTest:point withEvent:event];
 }
 
-#pragma mark - Event Reponse
+- (UINavigationItem *)popNavigationItemAnimated:(BOOL)animated {
+    if ([self allowBackAction]) {
+        return [super popNavigationItemAnimated:animated];
+    }
+    return nil;
+}
+
 #pragma mark - Notification
 #pragma mark - Instance Private Methods
 - (void)barSetupViews {
-    [self gainSystemBackgroundView];
     _clearColor = UIColor.clearColor;
     _whiteAlphaZero = [UIColor.whiteColor colorWithAlphaComponent:0];
     _barUserInteractionEnabled = YES;
@@ -149,6 +157,7 @@
     UIView *customContainerView = [[UIView alloc] init];
     customContainerView.translatesAutoresizingMaskIntoConstraints = NO;
     customContainerView.backgroundColor = UIColor.clearColor;
+    customContainerView.userInteractionEnabled = NO;
     [self addSubview:customContainerView];
     _customContainerView = customContainerView;
 
@@ -208,12 +217,13 @@
     if (_systemBackgroundView == nil) {
         for (UIView *aView in self.subviews) {
             if ([aView isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
+
                 _systemBackgroundView = aView;
                 NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_systemBackgroundView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
                 NSLayoutConstraint *constraintBottom = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-                
+
                  NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-                 
+
                  NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
                  [self addConstraints:@[constraintTop,constraintLeft,constraintRight,constraintBottom]];
             }
@@ -232,6 +242,7 @@
             }
         }
         if (_systemNavigationBarContentView) {
+   
         }
     }
 }
@@ -296,6 +307,19 @@
         _currentBarBlurEffectStyle = _tempBarBlurEffectStyle;
     }
 }
+
+- (BOOL)allowBackAction {
+    BOOL isBack = YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if ([self.currentViewController respondsToSelector:@selector(barNavigationShouldPopOnBackButton)]) {
+        char resultChar = (char)[self.currentViewController performSelector:@selector(barNavigationShouldPopOnBackButton)];
+        isBack = [[NSNumber numberWithChar:resultChar] boolValue];
+    }
+#pragma clang diagnostic pop
+    return isBack;
+}
+
 #pragma mark - Class Private Methods
 #pragma mark - Modules
 #pragma mark transition color
@@ -397,8 +421,8 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
         if (@available(iOS 11.0, *)) {
             NSArray<NSDictionary<NSString *,NSString *> *> *oriSels = @[
                 @{
-                    @"cls":@"_UINavigationBarContentViewLayout",
-                    @"sel":@"_updateMarginConstraints"
+                    @"cls":@"_UINavigationBarContentView",
+                    @"sel":@"_updateLayoutMarginsForLayout:"
                 }
             ];
             [oriSels enumerateObjectsUsingBlock:^(NSDictionary<NSString *,NSString *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -409,28 +433,68 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
 }
 
 
-- (void)yq__updateMarginConstraints {
+/*
+ *  11.0
+ 
+ 
+ @{
+    @"cls":@"_UINavigationBarContentView",
+    @"sel":@"__backButtonAction:"
+ }
+ 
+ -(void)yq___backButtonAction:(id)arg1 {
     @try {
-        if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentViewLayout")]){
-            [self yq__updateMarginConstraints];
-            return;
-        }
-        UIView *barContentView = [self valueForKey:@"contentView"];
+        if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentView")])return;
+        UIView *barContentView = (UIView *)self;
         if (![barContentView.superview isKindOfClass:FLNavigationBar.class]){
-            [self yq__updateMarginConstraints];
+            [self yq___backButtonAction:arg1];
             return;
         }
-        for (UIView *sub in barContentView.subviews) {
-            if ([sub isMemberOfClass: NSClassFromString(@"_UIButtonBarStackView")]) {
-                if (@available(iOS 9.0, *)) {
-                    UIStackView *stack = (UIStackView *)sub;
-                    stack.distribution = UIStackViewDistributionFillProportionally;
-                }
-            }
+        FLNavigationBar *bar = (FLNavigationBar *)(barContentView.superview);
+        if ([bar allowBackAction]) {
+            [self yq___backButtonAction:arg1];
         }
-        [self setValue:@(UIEdgeInsetsZero) forKey:@"_layoutMargins"];
-    } @catch (NSException *exception) {} @finally {}
-    [self yq__updateMarginConstraints];
+    } @catch (NSException *exception) {
+        [self yq___backButtonAction:arg1];
+    } @finally {}
+}
+*/
+/**
+ *  设置返回按钮边距   11.0
+ *  @{
+ *    @"cls":@"_UINavigationBarContentView",
+ *    @"sel":@"backButtonMargin"
+ *   }
+ *
+ *   - (double)yq_backButtonMargin {
+ *      return 100;
+ *   }
+ */
+
+/**
+ *
+ *    for (UIView *sub in barContentView.subviews) {
+         if ([sub isMemberOfClass: NSClassFromString(@"_UIButtonBarStackView")]) {
+             if (@available(iOS 9.0, *)) {
+                 UIStackView *stack = (UIStackView *)sub;
+                 stack.distribution = UIStackViewDistributionFillProportionally;
+             }
+         }
+     }
+ *
+ *
+ *
+ */
+
+-(void)yq__updateLayoutMarginsForLayout:(id)arg1 {
+    if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentView")])return;
+    UIView *barContentView = (UIView *)self;
+    if (![barContentView.superview isKindOfClass:FLNavigationBar.class])return;
+    @try {
+        [arg1 setValue:@(UIEdgeInsetsZero) forKey:@"_layoutMargins"];
+    } @catch (NSException *exception) {
+        [self yq__updateLayoutMarginsForLayout:arg1];
+    } @finally {}
 }
 
 @end

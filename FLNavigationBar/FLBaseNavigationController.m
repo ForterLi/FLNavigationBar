@@ -142,7 +142,6 @@
 - (void)setupViews {
     NSAssert([self.navigationBar isKindOfClass:[FLNavigationBar class]], @"no FLNavigationBar class");
     _baseNavigationBar = (FLNavigationBar *)self.navigationBar;
-    _baseNavigationBar.currentNavigationController = self;
 }
 
 #pragma mark - Class Private Methods
