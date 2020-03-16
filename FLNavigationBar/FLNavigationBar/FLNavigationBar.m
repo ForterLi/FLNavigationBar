@@ -421,8 +421,8 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
         if (@available(iOS 11.0, *)) {
             NSArray<NSDictionary<NSString *,NSString *> *> *oriSels = @[
                 @{
-                    @"cls":@"_UINavigationBarContentView",
-                    @"sel":@"_updateLayoutMarginsForLayout:"
+                    @"cls":@"_UINavigationBarContentViewLayout",
+                    @"sel":@"_updateMarginConstraints"
                 }
             ];
             [oriSels enumerateObjectsUsingBlock:^(NSDictionary<NSString *,NSString *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -435,8 +435,6 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
 
 /*
  *  11.0
- 
- 
  @{
     @"cls":@"_UINavigationBarContentView",
     @"sel":@"__backButtonAction:"
@@ -486,15 +484,20 @@ void yq_swizzle(Class oldClass, NSString *oldSelector, Class newClass) {
  *
  */
 
--(void)yq__updateLayoutMarginsForLayout:(id)arg1 {
-    if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentView")])return;
-    UIView *barContentView = (UIView *)self;
-    if (![barContentView.superview isKindOfClass:FLNavigationBar.class])return;
+- (void)yq__updateMarginConstraints {
     @try {
-        [arg1 setValue:@(UIEdgeInsetsZero) forKey:@"_layoutMargins"];
-    } @catch (NSException *exception) {
-        [self yq__updateLayoutMarginsForLayout:arg1];
-    } @finally {}
+        if (![self isMemberOfClass:NSClassFromString(@"_UINavigationBarContentViewLayout")]){
+            [self yq__updateMarginConstraints];
+            return;
+        }
+        UIView *barContentView = [self valueForKey:@"contentView"];
+        if (![barContentView.superview isKindOfClass:FLNavigationBar.class]){
+            [self yq__updateMarginConstraints];
+            return;
+        }
+        [self setValue:@(UIEdgeInsetsZero) forKey:@"_layoutMargins"];
+    } @catch (NSException *exception) {} @finally {}
+    [self yq__updateMarginConstraints];
 }
 
 @end
