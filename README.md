@@ -102,6 +102,7 @@ class FLCustomNavigationController : UINavigationController,UINavigationControll
 * 兼容 `Large Mode` 
 * 兼容 `prompt title`
 * 适配 iOS 13  dark 模式
+* 优化导航栏左右item间距的处理
 
 ## 安装
 
