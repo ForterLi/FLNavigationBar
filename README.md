@@ -97,13 +97,6 @@ class FLCustomNavigationController : UINavigationController,UINavigationControll
     }
 }
 ```
-## 更新
-* ViewController 单独控制侧滑 全屏侧滑 pop
-* 兼容 `Large Mode` 
-* 兼容 `prompt title`
-* 适配 iOS 13  dark 模式
-* 优化导航栏左右item间距的处理
-
 ## 安装
 
 ### CocoaPods
@@ -132,3 +125,15 @@ $ pod install
 ## 许可证
 
 FLNavigationBar 是基于 MIT 许可证下发布的，详情请参见 LICENSE。
+
+## 更新
+* ViewController 单独控制侧滑 全屏侧滑 pop
+* 兼容 `Large Mode` 
+* 兼容 `prompt title`
+* 适配 iOS 13  dark 模式
+* 优化导航栏左右item间距的处理
+
+## 联系方式
+* forterli@163.com
+* QQ群：1077108071
+
