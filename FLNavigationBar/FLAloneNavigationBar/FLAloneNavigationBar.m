@@ -50,6 +50,7 @@
     return self;
 }
 
+
 #pragma mark - Event Reponse
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
@@ -68,11 +69,13 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _constraintTop.constant = kStatusBarHeighOrientation();
-    _constraintHeight.constant = kNavgationBarHeightOrientation();
-    if (self.systemBackgroundView) {
-        self.systemBackgroundView.frame = CGRectMake(0, -kStatusBarHeighOrientation(), kScreenWidth,kStatusBarHeighOrientation() + kNavgationBarHeightOrientation());
-    }
+    self.customContainerView.backgroundColor = UIColor.redColor;
+    _constraintTop.constant = kNavgationBarTopHeighOrientation;
+    _constraintHeight.constant = kNavgationBarHeightOrientation;
+}
+
+- (CGFloat)customContainerHeight {
+    return  kNavgationBarAndStatusBarHeight;
 }
 
 #pragma mark - Notification
@@ -117,17 +120,19 @@
             return;
         }
         NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+        constraintTop.active = YES;
         _constraintTop = constraintTop;
 
         NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+        constraintHeight.active = YES;
         _constraintHeight = constraintHeight;
 
         NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+        constraintRight.active = YES;
 
         NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-        _barConstraints = @[constraintLeft,constraintRight,constraintTop,constraintHeight];
+        constraintLeft.active = YES;
     }
-    [self.superview addConstraints:_barConstraints];
 }
 
 - (void)removeLayoutView {

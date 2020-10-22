@@ -132,10 +132,10 @@
 			children = (
 				4C8D5C51230E88A800451F9E /* FLAloneNavigationBar.h */,
 				4C8D5C54230E88A800451F9E /* FLAloneNavigationBar.m */,
-				4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */,
-				4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */,
 				4C8D5C55230E88A800451F9E /* UIDevice+FLAdd.h */,
+				4C8D5C53230E88A800451F9E /* UIDevice+FLAdd.m */,
 				4C8D5C56230E88A800451F9E /* UIScreen+FLAdd.h */,
+				4C8D5C52230E88A800451F9E /* UIScreen+FLAdd.m */,
 			);
 			path = FLAloneNavigationBar;
 			sourceTree = "<group>";

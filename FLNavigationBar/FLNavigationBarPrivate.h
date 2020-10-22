@@ -29,12 +29,7 @@
 - (void)barStyleUpdate;
 - (BOOL)allowBackAction;
 
-@end
-
-
-@interface FLAloneNavigationBar (Private)
-
-@property (nonatomic, class, assign) CGRect barFrame;
+- (CGFloat)customContainerHeight;
 
 @end
 

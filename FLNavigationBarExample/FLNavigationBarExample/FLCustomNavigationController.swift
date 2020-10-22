@@ -12,8 +12,12 @@ class FLCustomNavigationController : UINavigationController,UINavigationControll
     override func loadView() {
         super.loadView()
         self.delegate = self
-        self.view.backgroundColor = UIColor.white
         self.interactivePopGestureRecognizer!.delegate = (self as UIGestureRecognizerDelegate)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
