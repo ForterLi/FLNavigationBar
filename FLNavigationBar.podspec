@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "FLNavigationBar"
-  spec.version      = "1.0.3"
+  spec.version      = "2.0.0"
   spec.summary      = "A drop-in universal library makes transition animations smooth between different navigation bar styles while pushing or popping."
 
   # This description is used to generate tags and improve search results.
