@@ -60,7 +60,6 @@
     UIColor *_defaultBarColor;
     UIColor *_defaultLintColor;
     FLBlurEffectStyle _defaultBlurEffectStyle;
-    __weak NSLayoutConstraint *_customContainerHeight;
 }
 
 
@@ -221,21 +220,12 @@
         for (UIView *aView in self.subviews) {
             if ([aView isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
                 _systemBackgroundView = aView;
-                _customContainerView.layoutMargins = UIEdgeInsetsZero;
-                self.layoutMargins = UIEdgeInsetsZero;
-                NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_systemBackgroundView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
-                NSLayoutConstraint *constraintBottom = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-
-                 NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-
-                 NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-                 [self addConstraints:@[constraintLeft,constraintRight,constraintBottom,constraintHeight]];
-                _customContainerHeight = constraintHeight;
+                [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0].active = YES;
+                [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0].active = YES;
+                [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0].active = YES;
+                [NSLayoutConstraint constraintWithItem:_customContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0].active = YES;
             }
         }
-    }
-    if (_systemBackgroundView) {
-        _customContainerHeight.constant = [self customContainerHeight];
     }
 }
 
@@ -323,13 +313,6 @@
     }
 #pragma clang diagnostic pop
     return isBack;
-}
-
-- (CGFloat)customContainerHeight {
-    if (_systemBackgroundView) {
-        return _systemBackgroundView.bounds.size.height;
-    }
-    return 0;
 }
 
 #pragma mark - Class Private Methods

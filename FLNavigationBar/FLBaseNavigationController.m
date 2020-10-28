@@ -68,12 +68,6 @@
 #pragma mark - Delegate
 #pragma mark UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-//    if (navigationController.childViewControllers.count > _currentChildCount) {
-//        NSLog(@"push");
-//    }else{
-//        NSLog(@"pop");
-//    }
-//    _currentChildCount = navigationController.childViewControllers.count;
     [self startBar];
 }
 

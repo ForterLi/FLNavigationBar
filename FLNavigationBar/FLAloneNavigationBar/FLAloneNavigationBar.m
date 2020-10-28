@@ -69,13 +69,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.customContainerView.backgroundColor = UIColor.redColor;
     _constraintTop.constant = kNavgationBarTopHeighOrientation;
     _constraintHeight.constant = kNavgationBarHeightOrientation;
-}
-
-- (CGFloat)customContainerHeight {
-    return  kNavgationBarAndStatusBarHeight;
 }
 
 #pragma mark - Notification

@@ -29,8 +29,6 @@
 - (void)barStyleUpdate;
 - (BOOL)allowBackAction;
 
-- (CGFloat)customContainerHeight;
-
 @end
 
 
