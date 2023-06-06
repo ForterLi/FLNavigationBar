@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  设备
  */
-@property (nonatomic, readonly, class) NSString *platform;
+//@property (nonatomic, readonly, class) NSString *platform;
 
 @end
 
@@ -62,5 +62,5 @@ static inline BOOL FLDeviceBang() {
     if (@available(iOS 11.0, *)) {
         deviceBang = ([UIApplication sharedApplication].windows.firstObject.safeAreaInsets.top > 20)?YES:NO;
     }
-    return (kiPhone_X || kiPhone_XR || kiPhone_XS || kiPhone_XS_Max || deviceBang);
+//    return (kiPhone_X || kiPhone_XR || kiPhone_XS || kiPhone_XS_Max || deviceBang);
 }
